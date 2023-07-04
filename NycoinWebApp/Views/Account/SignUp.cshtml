@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Abra a sua conta";
+}
+
+<!DOCTYPE html>
+<div class="wrapper fadeInDown">
+    <div class="form-signup-container">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first" style="margin:30px ">
+            <label style="font-size:2em;"><strong>Nycoin Bank | Cadastro</strong></label>
+        </div>
+        <!-- Login Form -->
+        @using (Html.BeginForm("SignUp", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "form", @class="container" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <input type="email" id="email" name="email" class="input-text-signup fadeIn second" placeholder="E-mail" />
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <input type="email" id="confirmEmail" name="confirmEmail" class="input-text-signup fadeIn second" placeholder="Confimar E-mail" />
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <input type="password" id="password" name="password" class="input-text-signup fadeIn second" placeholder="Senha" />
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <p class="signup-small-text">Sua senha deve conter pelo menos 8</p>
+                    <p class="signup-small-text" style="margin-top: 0px; margin-bottom: 10px;">caracteres, incluindo letras minúsculas, maiúsculas e números.</p>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="input-text-signup fadeIn second" placeholder="Confirmar Senha" />
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <input type="submit" class="btn-default-nycoin fadeIn fourth" value="Acessar conta" />
+                </div>
+            </div>
+        }
+        </div>
+</div>

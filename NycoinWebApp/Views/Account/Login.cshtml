@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<div class="wrapper fadeInDown">
+    <div class="form-login-content">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first" style="margin:30px ">
+            <label style="font-size:2em;"><strong>Nycoin Bank | Login</strong></label>
+        </div>
+        <!-- Login Form -->
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "form", @class = "container" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <input type="text" id="login" class="input-text fadeIn second" name="login" placeholder="E-mail" autocomplete="off">
+            <input type="password" id="password" class="input-text fadeIn third" name="password" placeholder="Senha" autocomplete="off">
+            <input type="submit" class="btn-default-nycoin fadeIn fourth" value="Acessar conta">
+        }
+        <!-- Remind Passowrd -->
+        <div class="form-login-footer">
+            <a class="underline-hover" href="#">Esqueceu sua senha?</a>
+        </div>
+    </div>
+</div>

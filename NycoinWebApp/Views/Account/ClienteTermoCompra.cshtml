@@ -1,0 +1,508 @@
+﻿@model NycoinWebApp.Models.Cliente
+@{
+    ViewBag.Title = "Termos de Compra";
+}
+<!DOCTYPE html>
+<div class="wrapper fadeIn">
+    <div class="form-signup-container" style="max-width: none;">
+        <div class="fadeIn first" style="margin:30px ">
+            <label style="font-size:2em;"><strong>Nycoin Bank | Termos de Compra</strong></label>
+        </div>
+
+        @using (Html.BeginForm("ClienteTermoCompra", "Account", FormMethod.Post, new { id = "form", @class = "container" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="fadeIn" style="margin-top: -50px;">
+                <h2 style="color: #000">Bem-vindo à <span style="color: #56baed !important">Nycoin!</span></h2>
+                <h2 style="color: #000">Para continuar o seu cadastro, precisamos de algumas informações adicionais.</h2>
+            </div>
+
+            <div class="col-sm-12 col-md-12 fadeIn" style="margin-top: 20px;">
+                <textarea style="width: 100% !important; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; height: 400px; font-size: 0.80em;" readonly>Termos para compra de Bitcoin
+Última modificação em 06 de Janeiro de 2019.
+Em vigor desde 01 de Agosto de 2018.
+O Cliente, já qualificado na Ficha Cadastral (“Cliente”), firma o presente Termo para Compra de Bitcoin (“Termo”), que é pressuposto fundamental para realizar a transação de compra de Bitcoin (BTC) por meio da Nycoin Intermediação Ltda. ("Nycoin"), inscrita no CNPJ/MF sob o nº 24.376.334/0001-22, com sede e domicílio na Avenida Brigadeiro Faria Lima, 3.600, 10º andar, conjunto 101 e 102, CEP 04538-132, na Cidade de São Paulo, Estado de São Paulo, em conformidade com os termos e condições abaixo.
+
+
+INFORMAÇÕES INICIAIS RELEVANTES
+O CLIENTE TEM CIÊNCIA DE QUE ESTE TERMO NÃO TEM A PRETENSÃO DE ESGOTAR AS INFORMAÇÕES RELACIONADAS AO BITCOIN, CONSTITUINDO UM BREVE RESUMO DOS DADOS BÁSICOS CONHECIDOS REFERENTES AO BITCOIN. O Cliente deve buscar informações adicionais e complementares sobre o Bitcoin de forma a aprofundar seu conhecimento e entendimento sobre o referido ativo, seu funcionamento, características e riscos, antes de realizar a compra desse Ativo Digital/Criptomoeda.
+O BITCOIN (BTC) É UM ATIVO NOVO E COM UMA DINÂMICA DE VALIDAÇÃO DE TRANSAÇÕES E DE REGISTRO DE TITULARIDADE DIFERENTE E NÃO USUAL, O QUE PROVOCA UMA SÉRIE DE INCERTEZAS QUANTO AO SEU FUTURO COMO UM ATIVO DE VALOR. A Nycoin RECOMENDA, POR ISSO, QUE O CLIENTE NÃO UTILIZE PARTE SUBSTANCIAL DE SEU PATRIMÔNIO PARA A COMPRA DE BITCOINS, MAS, AO CONTRÁRIO, USE PARTE BASTANTE REDUZIDA DO SEU PATRIMÔNIO PARA ESSA FINALIDADE, POR SE TRATAR DE UM ATIVO DE ALTO RISCO E COM GRANDE VOLATILIDADE.
+NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Os termos utilizados nesse Termo devem ser interpretados e entendidos de acordo com as definições que constam do Termo de Uso e Condições da Nycoin, disponível no site www.Nycoin.com.br/#/termos-uso, cuja adesão prévia é obrigatória para o início das operações com a Nycoin.
+
+
+1. PRODUTO
+BITCOIN (BTC) é um ativo digital baseado em um protocolo matemático definido por um código-fonte aberto, criado por um programador de computador anônimo atuando sob o pseudônimo de Satoshi Nakamoto e publicado em 03/01/2009.
+O titular (proprietário) do bitcoin é definido através de um processo realizado junto a uma rede de computadores que armazena os registros de emissão e de transação de cada bitcoin. O conjunto desses registros é chamado de “Blockchain do Bitcoin”.
+
+
+2. PROCESSO DE GERAÇÃO DE BITCOINS
+Bitcoins são gerados através de um processo denominado “mineração", que é realizado por diferentes “mineradores”, em variados lugares do mundo. As regras da mineração, que devem ser respeitadas, de forma indiscriminada e geral, por todos os mineradores, fazem parte do protocolo matemático que rege o funcionamento do bitcoin e compõem o Blockchain do Bitcoin.
+Qualquer indivíduo com os recursos e sistemas necessários a realização do processo de geração de bitcoins pode se tornar um minerador, não sendo necessária autorização, certificação, registro ou aprovação (pela Rede do Blockchainou por alguma entidade credenciadora) para que um indivíduo se torne minerador.
+O minerador não garante o valor do bitcoin. O minerador apenas participa do processo de geração de bitcoins. O valor do bitcoin corresponde ao preço pelo qual é negociado, que, por sua vez, é definido pela oferta e demanda pelo referido ativo.
+
+
+3. QUANTIDADE FINITA DE BITCOINS
+Bitcoins possuem apenas existência digital, e não física, através do registro no Blockchain do Bitcoin. Cada bitcoin pode ser dividido em até 100 (cem) milhões de unidades chamadas satoshis.
+Os bitcoins são emitidos a uma taxa decrescente, o que faz com que a emissão de novos bitcoins seja reduzida pela metade a cada período de 4 (quatro) anos. O protocolo matemático que compõe o bitcoin garante que a soma da quantidade de bitcoins armazenadas no Blockchain do Bitcoin será de, no máximo, de 21 (vinte e um) milhões de unidades, sem prejuízo da possibilidade de Eventos que possam alterar esse limite no Blockchain do Bitcoin.
+
+
+4. RENDIMENTO E PREÇO
+Bitcoins não geram pagamento de renda ou cupom, nem possuem rentabilidade atrelada a uma taxa de juros. O ganho financeiro com o bitcoin ocorre única e exclusivamente com a venda do bitcoin e desde que o bitcoin seja vendido a um preço superior ao de compra, o que, naturalmente, depende das condições do mercado.
+O preço do bitcoin é definido pelas variáveis de oferta e, sobretudo, demanda, considerando a oferta finita de bitcoins.
+A demanda tem sido impactada fortemente por uma série de variáveis que tem causado a variação brusca e acentuada do preço do bitcoin, incluindo, mas não se limitando a proibição de negociação e/ou uso de bitcoins em determinados países, ataque de hackers com vazamento de dados e/ou furto de bitcoins em ambientes de negociação e/ou guarda de bitcoins.
+Tais variáveis podem se repetir no futuro e serem acompanhadas ou substituídas por outras, o que poderá afetar negativamente o preço do bitcoin, motivo pelo qual o Cliente deve estar ciente da possibilidade de variações negativas relevantes e rápidas no preço do referido Ativo Digital/Criptomoeda.
+
+
+5. TRANSFERÊNCIAS INTERNACIONAIS
+O Cliente declara estar ciente de que as operações com bitcoin que impliquem em transferências internacionais não afastam a obrigatoriedade de se observar as normas cambiais aplicáveis ao país de origem da moeda, especialmente, tratando-se do Brasil, a que impõe a realização de operações de câmbio exclusivamente por meio de instituições autorizadas a operar no mercado câmbio pelo Banco Central do Brasil.
+
+
+6. TRIBUTAÇÃO
+O ganho de capital auferido por pessoas físicas na venda de bitcoins está sujeito à incidência de Imposto de Renda mensalmente, conforme alíquotas progressivas entre 15% (quinze por cento) e 22,5% (vinte dois e meio por cento), cabendo ao próprio cliente a apuração e o recolhimento do imposto através de DARF.
+Fica isento o ganho de capital auferido na alienação de bitcoins, cujo valor total de alienação, no mês em que esta se realizar, seja igual ou inferior a R$ 35.000,00 (trinta e cinco mil reais).
+O Cliente está ciente de que a tributação mencionada está de acordo com a legislação vigente e que a legislação relativa à tributação na compra e venda de bitcoins pode ser posteriormente modificada, não tendo a Nycoin a obrigação de informar o Cliente de qualquer alteração posterior na legislação tributária, cabendo ao Cliente fazer o seu próprio acompanhamento.
+
+
+7. AUSÊNCIA DE GARANTIAS
+BITCOINS NÃO SÃO VALORES MOBILIÁRIOS REGULADOS PELA COMISSÃO DE VALORES MOBILIÁRIOS – CVM, NEM TÍTULOS EMITIDOS OU CHANCELADOS POR QUALQUER GOVERNO, AUTORIDADE CENTRAL OU AUTORIDADE MONETÁRIA, INCLUINDO, MAS NÃO SE LIMITANDO AO BANCO CENTRAL DO BRASIL.
+O BITCOIN NÃO CONTA COM QUALQUER GARANTIA:
+(A) DO FUNDO GARANTIDOR DE CRÉDITOS – FGC;
+(B) DE CONVERSÃO PARA MOEDAS OFICIAIS, COMO O REAL OU DÓLAR, OU OUTRAS CRIPTOMOEDAS;
+(C) DE EXISTÊNCIA DE LASTREAMENTO EM ATIVOS DE QUALQUER ESPÉCIE.
+
+
+8. RISCO
+O BITCOIN É UM ATIVO QUE TEM ELEVADO GRAU DE INCERTEZA COM RELAÇÃO À SUA SEGURANÇA, LASTRO, TRANSFERIBILIDADE, RESERVA DE VALOR OU AO SEU USO COMO MEIO DE PAGAMENTO, ESTANDO SUJEITO, PORTANTO, A UMA VARIAÇÃO BRUSCA E RÁPIDA DE PREÇO, PODENDO, INCLUSIVE, DEIXAR DE TER QUALQUER VALOR E PASSAR A VALER “ZERO”.
+O BITCOIN, PELAS MESMAS CARACTERÍSTICAS ACIMA MENCIONADAS, NÃO É RECOMENDADO A QUALQUER TIPO DE CLIENTES, MAS APENAS ÀQUELES QUE TENHAM PERFIL AGRESSIVO.
+
+
+9. DECLARAÇÕES E RESPONSABILIDADE
+O CLIENTE DECLARA-SE CIENTE DE QUE:
+(i) A Nycoin ATUA COMO MERA INTERMEDIÁRIA NA NEGOCIAÇÃO DO BITCOIN (NÃO ATUA COMO MINERADORA, PRODUZINDO BITCOINS, NEM COMO “VALIDADORA” DAS TRANSAÇÕES OCORRIDAS NA REDE DO BLOCKCHAIN), NÃO PODENDO SER RESPONSABILIZADA POR QUALQUER DANO, PERDA, DIVERGÊNCIA, INDENIZAÇÃO, PENALIDADE E/OU PREJUÍZOS SOFRIDOS PELO CLIENTE QUE NÃO DECORRA, ÚNICA E EXCLUSIVAMENTE, DE FALHA NA PRESTAÇÃO DO SERVIÇO DE INTERMEDIAÇÃO POR SUA CULPA EXCLUSIVA;
+(ii) ASSIM, PERDAS QUE DECORRAM DA DESVALORIZAÇÃO DO PREÇO DO BITCOIN OU DA SUA COMPLETA PERDA DE VALOR, PERDAS QUE DECORRAM DE VIOLAÇÕES NA REDE DO BLOCKCHAIN, PERDAS QUE DECORRAM DE FORKS/AIR DROPS OU DE QUALQUER OUTRO EVENTO NA REDE DO BLOCKCHAIN, BEM COMO QUALQUER PERDA DECORRENTE DE ATIVIDADE SOBRE A QUAL A Nycoin NÃO TENHA INGERÊNCIA OU CONTROLE, PELA NATUREZA DO BITCOINS, NÃO SÃO DE SUA RESPONSABILIDADE;
+(iii) A DECISÃO DE COMPRA DE BITCOINS, BEM COMO A AVALIAÇÃO DOS RISCOS DA OPERAÇÃO, SÃO DE EXCLUSIVA RESPONSABILIDADE DO CLIENTE;
+(iv) A COMPRA DE ATIVOS DIGITAIS É UMA OPERAÇÃO DE ALTO RISCO E EXISTE A POSSIBILIDADE DE PERDA DE TODO O CAPITAL USADO NA COMPRA;
+(v) RENTABILIDADE PASSADA NÃO É GARANTIA DE RENTABILIDADE FUTURA;
+(vi) NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Termos para compra de Ethereum
+Última modificação em 06 de Janeiro de 2019.
+Em vigor desde 01 de Agosto de 2018.
+O Cliente, já qualificado na Ficha Cadastral (“Cliente”), firma o presente Termo para Compra de Ether (“Termo”), que é pressuposto fundamental para realizar a transação de compra de Ether (ETH) por meio da Nycoin Intermediação Ltda. ("Nycoin"), inscrita no CNPJ/MF sob o nº 24.376.334/0001-22, com sede e domicílio na Avenida Brigadeiro Faria Lima, 3.600, 10º andar, conjunto 101 e 102, CEP 04538-132, na Cidade de São Paulo, Estado de São Paulo, em conformidade com os termos e condições abaixo.
+
+
+INFORMAÇÕES INICIAIS RELEVANTES
+O CLIENTE TEM CIÊNCIA DE QUE ESTE TERMO NÃO TEM A PRETENSÃO DE ESGOTAR AS INFORMAÇÕES RELACIONADAS AO ETHEREUM E AO ETHER, CONSTITUINDO UM BREVE RESUMO DOS DADOS BÁSICOS CONHECIDOS REFERENTES AO ETHER. O Cliente deve buscar informações adicionais e complementares sobre o Ether, de forma a aprofundar seu conhecimento e entendimento sobre o referido ativo, seu funcionamento, características e riscos, antes de realizar a compra desse Ativo Digital/Criptomoeda.
+O ETHER (ETH) É UM ATIVO NOVO E COM UMA DINÂMICA DE VALIDAÇÃO DE TRANSAÇÕES E DE REGISTRO DE TITULARIDADE DIFERENTE E NÃO USUAL, O QUE PROVOCA UMA SÉRIE DE INCERTEZAS QUANTO AO SEU FUTURO COMO UM ATIVO DE VALOR. A Nycoin RECOMENDA, POR ISSO, QUE O CLIENTE NÃO UTILIZE PARTE SUBSTANCIAL DE SEU PATRIMÔNIO PARA A COMPRA DE ETHERS, MAS, AO CONTRÁRIO, USE PARTE BASTANTE REDUZIDA DO SEU PATRIMÔNIO PARA ESSA FINALIDADE, POR SE TRATAR DE UM ATIVO DE ALTO RISCO E COM GRANDE VOLATILIDADE.
+EM LINHA COM AS PRÁTICAS DO MERCADO, NA PLATAFORMA E PARA OS FINS DESTE TERMO, A PALAVRA ETHEREUM É UTILIZADA PARA FAZER REFERÊNCIA TANTO A PLATAFORMA QUANTO AO ATIVO DIGITAL ETHER. NO MOMENTO DA NEGOCIAÇÃO, O ATIVO DIGITAL PODERÁ APARECER NOMEADO COMO ETHEREUM OU ETH.
+NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Os termos utilizados nesse Termo devem ser interpretados e entendidos de acordo com as definições que constam do Termo de Uso e Condições da Nycoin, disponível no site www.Nycoin.com.br/#/termos-uso, cuja adesão prévia é obrigatória para o início das operações com a Nycoin.
+
+
+1. PRODUTO
+ETHER (ETH) é um ativo digital baseado em um protocolo matemático definido por um código-fonte aberto, mantido pela ETHEREUM FOUNDATION, organização sem fins lucrativos baseada na Suíça.
+Ethereum é o nome da a plataforma na qual os Ethers são negociados.
+O titular (proprietário) do Ether é definido através de um processo realizado junto a uma rede de computadores que armazena os registros de emissão e de transação de cada Ether. O conjunto desses registros é chamado de “Blockchain do Ethereum”.
+
+
+2. PROCESSO DE GERACÃO DE ETHER
+Ethers são gerados através de um processo denominado “mineração", que é realizado por diferentes “mineradores”, em variados lugares do mundo. As regras da mineração, que devem ser respeitadas de forma indiscriminada e geral, por todos os mineradores, fazem parte do protocolo matemático que rege o funcionamento do Ether e compõem o Blockchain do Ethereum.
+Qualquer indivíduo com os recursos e sistemas necessários a realização do processo de geração de Ethers pode se tornar um minerador, não sendo necessária autorização, certificação, registro ou aprovação (pela Rede do Blockchainou por alguma entidade credenciadora) para que um indivíduo se torne minerador.
+O minerador não garante o valor do Ether. O minerador apenas participa do processo de geração de Ether. O valor do Ether corresponde ao preço pelo qual é negociado, que, por sua vez, é definido pela oferta e demanda pelo referido ativo.
+
+
+3. QUANTIDADE MÁXIMA INDEFINIDA DE ETHERS
+Ethers possuem apenas existência digital, e não física, através do registro no Blockchain do Ethereum. Cada Ether pode ser dividido em até 1 quintilhão de unidades chamadas weis.
+A quantidade de 72 (setenta e dois) milhões de Ethers foi criada inicialmente, antes do início da mineração do Ethereum, sendo que parte dessa quantidade foi cedida aos investidores iniciais do projeto do Ether/Ethereum e outra parte está com a Ethereum Foundation para continuar a promover o desenvolvimento e evolução da referida tecnologia.
+Os Ethers são emitidos, atualmente, a uma taxa de, aproximadamente, 5 novos Ethers a cada 15 segundos, podendo tal quantidade ser alterada, discricionariamente, pelos responsáveis pela tecnologia do Ether/Ethereum.
+
+
+4. RENDIMENTO E PREÇO
+Ethers não geram pagamento de renda ou cupom, nem possuem rentabilidade atrelada a uma taxa de juros. O ganho financeiro com o Ether ocorre única e exclusivamente com a venda do Ether e desde que o Ether seja vendido a um preço superior ao de compra, o que, naturalmente, depende das condições do mercado.
+O preço do Ether é definido pelas variáveis de oferta e demanda.
+A demanda pode ser impactada por uma série de variáveis, incluindo, mas não se limitando a proibição de negociação e/ou uso de Ether em determinados países, ataque de hackers com vazamento de dados e/ou furto de Ethers em ambientes de negociação e/ou de guarda de Ethers, motivo pelo qual o Cliente deve estar ciente da possibilidade de variações negativas relevantes e rápidas no preço do referido Ativo Digital/Criptomoeda.
+
+
+5. TRANSFERÊNCIAS INTERNACIONAIS
+O Cliente declara estar ciente de que as operações com Ether que impliquem em transferências internacionais não afastam a obrigatoriedade de se observar as normas cambiais aplicáveis ao país de origem da moeda, especialmente, tratando-se do Brasil, a que impõe a realização de operações de câmbio exclusivamente por meio de instituições autorizadas a operar no mercado de câmbio pelo Banco Central do Brasil.
+
+
+6. TRIBUTAÇÃO
+O ganho de capital auferido por pessoas físicas na venda de Ethers está sujeito à incidência de Imposto de Renda, conforme alíquotas progressivas entre 15% (quinze por cento) e 22,5% (vinte dois e meio por cento).
+Fica isento o ganho de capital auferido na alienação de Ethers, cujo preço unitário de alienação, no mês em que esta se realizar, seja igual ou inferior a R$ 35.000,00 (trinta e cinco mil reais).
+O Cliente está ciente de que a tributação mencionada está de acordo com a legislação vigente e que a legislação relativa à tributação na compra e venda de Ethers pode ser posteriormente modificada, não tendo a Nycoin a obrigação de informar o Cliente de qualquer alteração posterior na legislação tributária, cabendo ao Cliente fazer o seu próprio acompanhamento.
+
+
+7. AUSÊNCIA DE GARANTIAS
+ETHERS NÃO SÃO VALORES MOBILIÁRIOS REGULADOS PELA COMISSÃO DE VALORES MOBILIÁRIOS – CVM, NEM TÍTULOS EMITIDOS OU CHANCELADOS POR QUALQUER GOVERNO, AUTORIDADE CENTRAL OU AUTORIDADE MONETÁRIA, INCLUINDO, MAS NÃO SE LIMITANDO AO BANCO CENTRAL DO BRASIL.
+O ETHER NÃO CONTA COM QUALQUER GARANTIA:
+(A) DO FUNDO GARANTIDOR DE CRÉDITOS – FGC;
+(B) DE CONVERSÃO PARA MOEDAS OFICIAIS, COMO O REAL OU DÓLAR, OU OUTRAS CRIPTOMOEDAS;
+(C) DE EXISTÊNCIA DE LASTREAMENTO EM ATIVOS DE QUALQUER ESPÉCIE.
+
+
+8. RISCO
+O ETHER É UM ATIVO QUE TEM ELEVADO GRAU DE INCERTEZA COM RELAÇÃO A SUA SEGURANÇA, LASTRO, TRANSFERIBILIDADE, RESERVA DE VALOR OU AO SEU USO COMO MEIO DE PAGAMENTO, ESTANDO SUJEITO, PORTANTO, A UMA VARIAÇÃO BRUSCA E RÁPIDA DE PRECO, PODENDO, INCLUSIVE, DEIXAR DE TER QUALQUER VALOR E PASSAR A VALER “ZERO”.
+O ETHER, PELAS MESMAS CARACTERÍSTICAS ACIMA MENCIONADAS, NÃO É RECOMENDADO A QUALQUER TIPO DE CLIENTES, MAS APENAS ÀQUELES QUE TENHAM PERFIL AGRESSIVO.
+
+
+9. DECLARAÇÕES E RESPONSABILIDADE
+O CLIENTE DECLARA-SE CIENTE DE QUE:
+(i) A Nycoin ATUA COMO MERA INTERMEDIÁRIA NA NEGOCIAÇÃO DO ETHER (NÃO ATUA COMO MINERADORA, PRODUZINDO ETHERS, NEM COMO “VALIDADORA” DAS TRANSAÇÕES OCORRIDAS NA REDE DO BLOCKCHAIN), NÃO PODENDO SER RESPONSABILIZADA POR QUALQUER DANO, PERDA, DIVERGÊNCIA, INDENIZAÇÃO, PENALIDADE E/OU PREJUÍZOS SOFRIDOS PELO CLIENTE QUE NÃO DECORRA, ÚNICA E EXCLUSIVAMENTE, DE FALHA NA PRESTAÇÃO DO SERVIÇO DE INTERMEDIAÇÃO POR SUA CULPA EXCLUSIVA;
+(ii) ASSIM, PERDAS QUE DECORRAM DA DESVALORIZAÇÃO DO PREÇO DO ETHER OU DA SUA COMPLETA PERDA DE VALOR, PERDAS QUE DECORRAM DE VIOLAÇÕES NA REDE DO BLOCKCHAIN, PERDAS QUE DECORRAM DE FORKS/AIR DROPS OU DE QUALQUER OUTRO EVENTO NA REDE DO BLOCKCHAIN, BEM COMO QUALQUER PERDA DECORRENTE DE ATIVIDADE SOBRE A QUAL A Nycoin NÃO TENHA INGERÊNCIA OU CONTROLE, PELA NATUREZA DO ETHERS, NÃO SÃO DE SUA RESPONSABILIDADE.
+(iii) A DECISÃO DE COMPRA DE ETHERS, BEM COMO A AVALIAÇÃO DOS RISCOS DA OPERAÇÃO, SÃO DE EXCLUSIVA RESPONSABILIDADE DO CLIENTE;
+(iv) A COMPRA DE ATIVOS DIGITAIS É UMA OPERAÇÃO DE ALTO RISCO E EXISTE A POSSIBILIDADE DE PERDA DE TODO O CAPITAL USADO NA COMPRA;
+(v) RENTABILIDADE PASSADA NÃO É GARANTIA DE RENTABILIDADE FUTURA;
+(vi) NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Termos para compra de Dash
+Última modificação em 06 de Janeiro de 2019.
+Em vigor desde 06 de Janeiro de 2019.
+O Cliente, já qualificado na Ficha Cadastral (“Cliente”), firma o presente Termo para Compra de Dash (“Termo”), que é pressuposto fundamental para realizar a transação de compra de Dash por meio da Nycoin Intermediação Ltda. (“Nycoin”), inscrita no CNPJ/MF sob o nº 24.376.334/0001-22, com sede e domicílio na Avenida Brigadeiro Faria Lima, 3.600, 10º andar, conjunto 101 e 102, CEP 04538-132, na Cidade de São Paulo, Estado de São Paulo, em conformidade com os termos e condições abaixo.
+
+
+INFORMAÇÕES INICIAIS RELEVANTES
+O CLIENTE TEM CIÊNCIA DE QUE ESTE TERMO NÃO TEM A PRETENSÃO DE ESGOTAR AS INFORMAÇÕES RELACIONADAS AO DASH, CONSTITUINDO UM BREVE RESUMO DOS DADOS BÁSICOS CONHECIDOS REFERENTES AO DASH. O Cliente deve buscar informações adicionais e complementares sobre o Dash de forma a aprofundar seu conhecimento e entendimento sobre o referido ativo, seu funcionamento, características e riscos, antes de realizar a compra desse Ativo Digital/Criptomoeda.
+O DASH É UM ATIVO NOVO E COM UMA DINÂMICA DE VALIDAÇÃO DE TRANSAÇÕES E DE REGISTRO DE TITULARIDADE DIFERENTE E NÃO USUAL, O QUE PROVOCA UMA SÉRIE DE INCERTEZAS QUANTO AO SEU FUTURO COMO UM ATIVO DE VALOR. A Nycoin RECOMENDA, POR ISSO, QUE O CLIENTE NÃO UTILIZE PARTE SUBSTANCIAL DE SEU PATRIMÔNIO PARA A COMPRA DE DASH, MAS, AO CONTRÁRIO, USE PARTE BASTANTE REDUZIDA DO SEU PATRIMÔNIO PARA ESSA FINALIDADE, POR SE TRATAR DE UM ATIVO DE ALTO RISCO E COM GRANDE VOLATILIDADE.
+NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Os termos utilizados nesse Termo devem ser interpretados e entendidos de acordo com as definições que constam do Termo de Uso e Condições da Nycoin, disponível no site www.Nycoin.com.br/#/termos-uso, cuja adesão prévia é obrigatória para o início das operações com a Nycoin.
+
+
+1. PRODUTO
+Dash é um ativo digital baseado em uma cópia (“fork”) do Bitcoin, um ativo digital baseado um protocolo matemático definido por um código-fonte aberto, criado por um programador de computador anônimo atuando sob o pseudônimo de Satoshi Nakamoto e publicado em 03/01/2009. O projeto Dash foi lançado em janeiro de 2014.
+O titular (proprietário) do dash é definido através de um processo realizado junto a uma rede de computadores que armazena os registros de emissão e de transação de cada dash. O conjunto desses registros é chamado de “Blockchain do Dash”.
+
+
+2. PROCESSO DE GERAÇÃO DE DASH
+Dash são gerados através de um processo denominado “mineração", que é realizado por diferentes “mineradores”, em variados lugares do mundo. As regras da mineração, que devem ser respeitadas, de forma indiscriminada e geral, por todos os mineradores, fazem parte do protocolo matemático que rege o funcionamento do Dash e compõem o Blockchain do Dash.
+Qualquer indivíduo com os recursos e sistemas necessários a realização do processo de geração de dash pode se tornar um minerador, não sendo necessária autorização, certificação, registro ou aprovação (pela Rede do Blockchainou por alguma entidade credenciadora) para que um indivíduo se torne minerador.
+O minerador não garante o valor do dash. O minerador apenas participa do processo de geração de dash. O valor do dash corresponde ao preço pelo qual é negociado, que, por sua vez, é definido pela oferta e demanda pelo referido ativo.
+
+
+3. QUANTIDADE FINITA DE DASH
+Dash possuem apenas existência digital, e não física, através do registro no Blockchain do dash. Cada dash pode ser dividido em até 100 (cem) milhões de unidades chamadas satoshis.
+Os dash são emitidos a uma taxa decrescente, o que faz com que a emissão de novos dash seja reduzida pela metade a cada período de 4 (quatro) anos. O protocolo matemático que compõe o dash garante que a soma da quantidade de dash armazenadas no Blockchain do Dash será de, no máximo, de 18.900.000 (dezoito milhões e novecentos mil) de unidades, sem prejuízo da possibilidade de Eventos que possam alterar esse limite no Blockchain do Dash.
+
+
+4. RENDIMENTO E PREÇO
+Dash não geram pagamento de renda ou cupom, nem possuem rentabilidade atrelada a uma taxa de juros. O ganho financeiro com o dash ocorre única e exclusivamente com a venda do dash e desde que o dash seja vendido a um preço superior ao de compra, o que, naturalmente, depende das condições do mercado.
+O preço do dash é definido pelas variáveis de oferta e, sobretudo, demanda, considerando a oferta finita de dash.
+A demanda tem sido impactada fortemente por uma série de variáveis que tem causado a variação brusca e acentuada do preço do dash, incluindo, mas não se limitando a proibição de negociação e/ou uso de dash em determinados países, ataque de hackers com vazamento de dados e/ou furto de dash em ambientes de negociação e/ou guarda de dash.
+Tais variáveis podem se repetir no futuro e serem acompanhadas ou substituídas por outras, o que poderá afetar negativamente o preço do dash, motivo pelo qual o Cliente deve estar ciente da possibilidade de variações negativas relevantes e rápidas no preço do referido Ativo Digital/Criptomoeda.
+
+
+5. TRANSFERÊNCIAS INTERNACIONAIS
+O Cliente declara estar ciente de que as operações com dash que impliquem em transferências internacionais não afastam a obrigatoriedade de se observar as normas cambiais aplicáveis ao país de origem da moeda, especialmente, tratando-se do Brasil, a que impõe a realização de operações de câmbio exclusivamente por meio de instituições autorizadas a operar no mercado câmbio pelo Banco Central do Brasil.
+
+
+6. TRIBUTAÇÃO
+O ganho de capital auferido por pessoas físicas na venda de dash está sujeito à incidência de Imposto de Renda mensalmente, conforme alíquotas progressivas entre 15% (quinze por cento) e 22,5% (vinte dois e meio por cento), cabendo ao próprio cliente a apuração e o recolhimento do imposto através de DARF.
+Fica isento o ganho de capital auferido na alienação de dash, cujo valor total de alienação, no mês em que esta se realizar, seja igual ou inferior a R$ 35.000,00 (trinta e cinco mil reais).
+O Cliente está ciente de que a tributação mencionada está de acordo com a legislação vigente e que a legislação relativa à tributação na compra e venda de dash pode ser posteriormente modificada, não tendo a Nycoin a obrigação de informar o Cliente de qualquer alteração posterior na legislação tributária, cabendo ao Cliente fazer o seu próprio acompanhamento.
+
+
+7. AUSÊNCIA DE GARANTIAS
+DASH NÃO SÃO VALORES MOBILIÁRIOS REGULADOS PELA COMISSÃO DE VALORES MOBILIÁRIOS – CVM, NEM TÍTULOS EMITIDOS OU CHANCELADOS POR QUALQUER GOVERNO, AUTORIDADE CENTRAL OU AUTORIDADE MONETÁRIA, INCLUINDO, MAS NÃO SE LIMITANDO AO BANCO CENTRAL DO BRASIL.
+O DASH NÃO CONTA COM QUALQUER GARANTIA:
+(A) DO FUNDO GARANTIDOR DE CRÉDITOS – FGC;
+(B) DE CONVERSÃO PARA MOEDAS OFICIAIS, COMO O REAL OU DÓLAR, OU OUTRAS CRIPTOMOEDAS;
+(C) DE EXISTÊNCIA DE LASTREAMENTO EM ATIVOS DE QUALQUER ESPÉCIE.
+
+
+8. RISCO
+O DASH É UM ATIVO QUE TEM ELEVADO GRAU DE INCERTEZA COM RELAÇÃO À SUA SEGURANÇA, LASTRO, TRANSFERIBILIDADE, RESERVA DE VALOR OU AO SEU USO COMO MEIO DE PAGAMENTO, ESTANDO SUJEITO, PORTANTO, A UMA VARIAÇÃO BRUSCA E RÁPIDA DE PREÇO, PODENDO, INCLUSIVE, DEIXAR DE TER QUALQUER VALOR E PASSAR A VALER “ZERO”.
+O DASH, PELAS MESMAS CARACTERÍSTICAS ACIMA MENCIONADAS, NÃO É RECOMENDADO A QUALQUER TIPO DE CLIENTES, MAS APENAS ÀQUELES QUE TENHAM PERFIL AGRESSIVO.
+
+
+9. DECLARAÇÕES E RESPONSABILIDADE
+O CLIENTE DECLARA-SE CIENTE DE QUE:
+(i) A Nycoin ATUA COMO MERA INTERMEDIÁRIA NA NEGOCIAÇÃO DO DASH (NÃO ATUA COMO MINERADORA, PRODUZINDO DASH, NEM COMO “VALIDADORA” DAS TRANSAÇÕES OCORRIDAS NA REDE DO BLOCKCHAIN), NÃO PODENDO SER RESPONSABILIZADA POR QUALQUER DANO, PERDA, DIVERGÊNCIA, INDENIZAÇÃO, PENALIDADE E/OU PREJUÍZOS SOFRIDOS PELO CLIENTE QUE NÃO DECORRA, ÚNICA E EXCLUSIVAMENTE, DE FALHA NA PRESTAÇÃO DO SERVIÇO DE INTERMEDIAÇÃO POR SUA CULPA EXCLUSIVA;
+(ii) ASSIM, PERDAS QUE DECORRAM DA DESVALORIZAÇÃO DO PREÇO DO DASH OU DA SUA COMPLETA PERDA DE VALOR, PERDAS QUE DECORRAM DE VIOLAÇÕES NA REDE DO BLOCKCHAIN, PERDAS QUE DECORRAM DE FORKS/AIR DROPS OU DE QUALQUER OUTRO EVENTO NA REDE DO BLOCKCHAIN, BEM COMO QUALQUER PERDA DECORRENTE DE ATIVIDADE SOBRE A QUAL A Nycoin NÃO TENHA INGERÊNCIA OU CONTROLE, PELA NATUREZA DO DASH, NÃO SÃO DE SUA RESPONSABILIDADE;
+(iii) A DECISÃO DE COMPRA DE DASH, BEM COMO A AVALIAÇÃO DOS RISCOS DA OPERAÇÃO, SÃO DE EXCLUSIVA RESPONSABILIDADE DO CLIENTE;
+(iv) A COMPRA DE ATIVOS DIGITAIS É UMA OPERAÇÃO DE ALTO RISCO E EXISTE A POSSIBILIDADE DE PERDA DE TODO O CAPITAL USADO NA COMPRA;
+(v) RENTABILIDADE PASSADA NÃO É GARANTIA DE RENTABILIDADE FUTURA;
+(vi) NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Termos para compra de Litecoin
+Última modificação em 06 de Janeiro de 2019.
+Em vigor desde 06 de Janeiro de 2019.
+O Cliente, já qualificado na Ficha Cadastral (“Cliente”), firma o presente Termo para Compra de Litecoin (“Termo”), que é pressuposto fundamental para realizar a transação de compra de Litecoin (LTC) por meio da Nycoin Intermediação Ltda. (“Nycoin”), inscrita no CNPJ/MF sob o nº 24.376.334/0001-22, com sede e domicílio na Avenida Brigadeiro Faria Lima, 3.600, 10º andar, conjunto 101 e 102, CEP 04538-132, na Cidade de São Paulo, Estado de São Paulo, em conformidade com os termos e condições abaixo.
+
+
+INFORMAÇÕES INICIAIS RELEVANTES
+O CLIENTE TEM CIÊNCIA DE QUE ESTE TERMO NÃO TEM A PRETENSÃO DE ESGOTAR AS INFORMAÇÕES RELACIONADAS AO LITECOIN, CONSTITUINDO UM BREVE RESUMO DOS DADOS BÁSICOS CONHECIDOS REFERENTES AO LITECOIN. O Cliente deve buscar informações adicionais e complementares sobre o litecoin, de forma a aprofundar seu conhecimento e entendimento sobre o referido ativo, seu funcionamento, características e riscos, antes de realizar a compra desse Ativo Digital/Criptomoeda.
+O LITECOIN (LTC) É UM ATIVO NOVO E COM UMA DINÂMICA DE VALIDAÇÃO DE TRANSAÇÕES E DE REGISTRO DE TITULARIDADE DIFERENTE E NÃO USUAL, O QUE PROVOCA UMA SÉRIE DE INCERTEZAS QUANTO AO SEU FUTURO COMO UM ATIVO DE VALOR. A Nycoin RECOMENDA, POR ISSO, QUE O CLIENTE NÃO UTILIZE PARTE SUBSTANCIAL DE SEU PATRIMÔNIO PARA A COMPRA DE LITECOINS, MAS, AO CONTRÁRIO, USE PARTE BASTANTE REDUZIDA DO SEU PATRIMÔNIO PARA ESSA FINALIDADE, POR SE TRATAR DE UM ATIVO DE ALTO RISCO E COM GRANDE VOLATILIDADE.
+NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Os termos utilizados nesse Termo devem ser interpretados e entendidos de acordo com as definições que constam do Termo de Uso e Condições da Nycoin, disponível no site www.Nycoin.com.br/#/termos-uso, cuja adesão prévia é obrigatória para o início das operações com a Nycoin.
+
+
+1. PRODUTO
+Litecoin é um ativo digital baseado numa cópia (“fork”) do bitcoin, o qual é um ativo digital baseado em um protocolo matemático definido por um código-fonte aberto, criado por um programador de computador anônimo atuando sob o pseudônimo de Satoshi Nakamoto e publicado em 03/01/2009.
+O Litecoin foi criado em outubro de 2011.
+O titular (proprietário) do litecoin é definido através de um processo realizado junto a uma rede de computadores que armazena os registros de emissão e de transação de cada litecoin. O conjunto desses registros é chamado de “Blockchain do Litecoin”.
+
+
+2. PROCESSO DE GERAÇÃO DE LITECOINS
+Litecoin (LTC) são gerados através de um processo denominado “mineração", que é realizado por diferentes “mineradores”, em variados lugares do mundo. As regras da mineração, que devem ser respeitadas, de forma indiscriminada e geral, por todos os mineradores, fazem parte do protocolo matemático que rege o funcionamento do Litecoin e compõem o Blockchain do Litecoin.
+Qualquer indivíduo com os recursos e sistemas necessários a realização do processo de geração de litecoins pode se tornar um minerador, não sendo necessária autorização, certificação, registro ou aprovação (pela Rede do Blockchainou por alguma entidade credenciadora) para que um indivíduo se torne minerador.
+O minerador não garante o valor do litecoin. O minerador apenas participa do processo de geração de litecoins. O valor do litecoin corresponde ao preço pelo qual é negociado, que, por sua vez, é definido pela oferta e demanda pelo referido ativo.
+
+
+3. QUANTIDADE FINITA DE LITECOINS
+Litecoins possuem apenas existência digital, e não física, através do registro no Blockchain do litecoin. Cada litecoin pode ser dividido em até 100 (cem) milhões de unidades chamadas photons.
+Os litecoins são emitidos a uma taxa decrescente, o que faz com que a emissão de novos litecoins seja reduzida pela metade a cada período de 4 (quatro) anos. O protocolo matemático que compõe o litecoin garante que a soma da quantidade de litecoins armazenadas no Blockchain do Litecoin será de, no máximo, de 84 (oitenta e quatro) milhões de unidades, sem prejuízo da possibilidade de Eventos que possam alterar esse limite no Blockchain do Litecoin.
+
+
+4. RENDIMENTO E PREÇO
+Litecoins não geram pagamento de renda ou cupom, nem possuem rentabilidade atrelada a uma taxa de juros. O ganho financeiro com o litecoin ocorre única e exclusivamente com a venda do litecoin e desde que o litecoin seja vendido a um preço superior ao de compra, o que, naturalmente, depende das condições do mercado.
+O preço do litecoin é definido pelas variáveis de oferta e, sobretudo, demanda, considerando a oferta finita de litecoins.
+A demanda tem sido impactada fortemente por uma série de variáveis que tem causado a variação brusca e acentuada do preço do litecoin, incluindo, mas não se limitando a proibição de negociação e/ou uso de litecoins em determinados países, ataque de hackers com vazamento de dados e/ou furto de litecoins em ambientes de negociação e/ou guarda de litecoins.
+Tais variáveis podem se repetir no futuro e serem acompanhadas ou substituídas por outras, o que poderá afetar negativamente o preço do litecoin, motivo pelo qual o Cliente deve estar ciente da possibilidade de variações negativas relevantes e rápidas no preço do referido Ativo Digital/Criptomoeda.
+
+
+5. TRANSFERÊNCIAS INTERNACIONAIS
+O Cliente declara estar ciente de que as operações com litecoin que impliquem em transferências internacionais não afastam a obrigatoriedade de se observar as normas cambiais aplicáveis ao país de origem da moeda, especialmente, tratando-se do Brasil, a que impõe a realização de operações de câmbio exclusivamente por meio de instituições autorizadas a operar no mercado câmbio pelo Banco Central do Brasil.
+
+
+6. TRIBUTAÇÃO
+O ganho de capital auferido por pessoas físicas na venda de litecoins está sujeito à incidência de Imposto de Renda mensalmente, conforme alíquotas progressivas entre 15% (quinze por cento) e 22,5% (vinte dois e meio por cento), cabendo ao próprio cliente a apuração e o recolhimento do imposto através de DARF.
+Fica isento o ganho de capital auferido na alienação de litecoins, cujo valor total de alienação, no mês em que esta se realizar, seja igual ou inferior a R$ 35.000,00 (trinta e cinco mil reais).
+O Cliente está ciente de que a tributação mencionada está de acordo com a legislação vigente e que a legislação relativa à tributação na compra e venda de litecoins pode ser posteriormente modificada, não tendo a Nycoin a obrigação de informar o Cliente de qualquer alteração posterior na legislação tributária, cabendo ao Cliente fazer o seu próprio acompanhamento.
+
+
+7. AUSÊNCIA DE GARANTIAS
+LITECOINS NÃO SÃO VALORES MOBILIÁRIOS REGULADOS PELA COMISSÃO DE VALORES MOBILIÁRIOS – CVM, NEM TÍTULOS EMITIDOS OU CHANCELADOS POR QUALQUER GOVERNO, AUTORIDADE CENTRAL OU AUTORIDADE MONETÁRIA, INCLUINDO, MAS NÃO SE LIMITANDO AO BANCO CENTRAL DO BRASIL.
+O LITECOIN NÃO CONTA COM QUALQUER GARANTIA:
+(A) DO FUNDO GARANTIDOR DE CRÉDITOS – FGC;
+(B) DE CONVERSÃO PARA MOEDAS OFICIAIS, COMO O REAL OU DÓLAR, OU OUTRAS CRIPTOMOEDAS;
+(C) DE EXISTÊNCIA DE LASTREAMENTO EM ATIVOS DE QUALQUER ESPÉCIE.
+
+
+8. RISCO
+O LITECOIN É UM ATIVO QUE TEM ELEVADO GRAU DE INCERTEZA COM RELAÇÃO À SUA SEGURANÇA, LASTRO, TRANSFERIBILIDADE, RESERVA DE VALOR OU AO SEU USO COMO MEIO DE PAGAMENTO, ESTANDO SUJEITO, PORTANTO, A UMA VARIAÇÃO BRUSCA E RÁPIDA DE PREÇO, PODENDO, INCLUSIVE, DEIXAR DE TER QUALQUER VALOR E PASSAR A VALER “ZERO”.
+O LITECOIN, PELAS MESMAS CARACTERÍSTICAS ACIMA MENCIONADAS, NÃO É RECOMENDADO A QUALQUER TIPO DE CLIENTES, MAS APENAS ÀQUELES QUE TENHAM PERFIL AGRESSIVO.
+
+
+9. DECLARAÇÕES E RESPONSABILIDADE
+O CLIENTE DECLARA-SE CIENTE DE QUE:
+(i) A Nycoin ATUA COMO MERA INTERMEDIÁRIA NA NEGOCIAÇÃO DO LITECOIN (NÃO ATUA COMO MINERADORA, PRODUZINDO LITECOINS, NEM COMO “VALIDADORA” DAS TRANSAÇÕES OCORRIDAS NA REDE DO BLOCKCHAIN), NÃO PODENDO SER RESPONSABILIZADA POR QUALQUER DANO, PERDA, DIVERGÊNCIA, INDENIZAÇÃO, PENALIDADE E/OU PREJUÍZOS SOFRIDOS PELO CLIENTE QUE NÃO DECORRA, ÚNICA E EXCLUSIVAMENTE, DE FALHA NA PRESTAÇÃO DO SERVIÇO DE INTERMEDIAÇÃO POR SUA CULPA EXCLUSIVA;
+(ii) ASSIM, PERDAS QUE DECORRAM DA DESVALORIZAÇÃO DO PREÇO DO LITECOIN OU DA SUA COMPLETA PERDA DE VALOR, PERDAS QUE DECORRAM DE VIOLAÇÕES NA REDE DO BLOCKCHAIN, PERDAS QUE DECORRAM DE FORKS/AIR DROPS OU DE QUALQUER OUTRO EVENTO NA REDE DO BLOCKCHAIN, BEM COMO QUALQUER PERDA DECORRENTE DE ATIVIDADE SOBRE A QUAL A Nycoin NÃO TENHA INGERÊNCIA OU CONTROLE, PELA NATUREZA DO LITECOINS, NÃO SÃO DE SUA RESPONSABILIDADE;
+(iii) A DECISÃO DE COMPRA DE LITECOINS, BEM COMO A AVALIAÇÃO DOS RISCOS DA OPERAÇÃO, SÃO DE EXCLUSIVA RESPONSABILIDADE DO CLIENTE;
+(iv) A COMPRA DE ATIVOS DIGITAIS É UMA OPERAÇÃO DE ALTO RISCO E EXISTE A POSSIBILIDADE DE PERDA DE TODO O CAPITAL USADO NA COMPRA;
+(v) RENTABILIDADE PASSADA NÃO É GARANTIA DE RENTABILIDADE FUTURA;
+(vi) NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Termos para compra de Ripple
+Última modificação em 06 de Janeiro de 2019.
+Em vigor desde 06 de Janeiro de 2019.
+O Cliente, já qualificado na Ficha Cadastral (“Cliente”), firma o presente Termo para Compra de Ripple (“Termo”), que é pressuposto fundamental para realizar a transação de compra de Ripple (XRP) por meio da Nycoin Intermediação Ltda. (“Nycoin”), inscrita no CNPJ/MF sob o nº 24.376.334/0001-22, com sede e domicílio na Avenida Brigadeiro Faria Lima, 3.600, 10º andar, conjunto 101 e 102, CEP 04538-132, na Cidade de São Paulo, Estado de São Paulo, em conformidade com os termos e condições abaixo.
+
+
+INFORMAÇÕES INICIAIS RELEVANTES
+O CLIENTE TEM CIÊNCIA DE QUE ESTE TERMO NÃO TEM A PRETENSÃO DE ESGOTAR AS INFORMAÇÕES RELACIONADAS AO RIPPLE, CONSTITUINDO UM BREVE RESUMO DOS DADOS BÁSICOS CONHECIDOS REFERENTES AO RIPPLE. O Cliente deve buscar informações adicionais e complementares sobre o Ripple de forma a aprofundar seu conhecimento e entendimento sobre o referido ativo, seu funcionamento, características e riscos, antes de realizar a compra desse Ativo Digital/Criptomoeda.
+O RIPPLE (XRP) É UM ATIVO NOVO E COM UMA DINÂMICA DE VALIDAÇÃO DE TRANSAÇÕES E DE REGISTRO DE TITULARIDADE DIFERENTE E NÃO USUAL, O QUE PROVOCA UMA SÉRIE DE INCERTEZAS QUANTO AO SEU FUTURO COMO UM ATIVO DE VALOR. A Nycoin RECOMENDA, POR ISSO, QUE O CLIENTE NÃO UTILIZE PARTE SUBSTANCIAL DE SEU PATRIMÔNIO PARA A COMPRA DE XRPs, MAS, AO CONTRÁRIO, USE PARTE BASTANTE REDUZIDA DO SEU PATRIMÔNIO PARA ESSA FINALIDADE, POR SE TRATAR DE UM ATIVO DE ALTO RISCO E COM GRANDE VOLATILIDADE.
+NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Os termos utilizados nesse Termo devem ser interpretados e entendidos de acordo com as definições que constam do Termo de Uso e Condições da Nycoin, disponível no site www.Nycoin.com.br/#/termos-uso, cuja adesão prévia é obrigatória para o início das operações com a Nycoin.
+
+
+1. PRODUTO
+XRP é um ativo digital baseado em um protocolo matemático definido por um código-fonte aberto, criado pela empresa Ripple em 2012.
+O titular (proprietário) do XRP é definido através de um processo realizado junto a uma rede de computadores que armazena os registros de emissão e de transação de cada XRP.
+
+
+2. PROCESSO DE GERAÇÃO DE XRPs
+Todos os XRPs foram gerados no lançamento do projeto, somando um total de 99.991.757.426 unidades (noventa e nove bilhões novecentos e noventa e um milhões setecentos e cinquenta e sete mil e quatrocentos e vinte e seis). Não há processo de mineração similar ao bitcoin.
+
+
+3. QUANTIDADE FINITA DE XRPs
+XRPs possuem apenas existência digital, e não física, através do registro no Blockchain do Ripple. Cada XRP pode ser dividido em até um milhão de unidades.
+Os XRPs são emitidos a uma taxa decrescente, o que faz com que a emissão de novos XRPs seja reduzida pela metade a cada período de 4 (quatro) anos. O protocolo que compõe o Ripple garante que a soma da quantidade de XRPs armazenadas na rede (“ledger”) do Ripple será de, no máximo, de 99.991.757.426 unidades (noventa e nove bilhões novecentos e noventa e um milhões setecentos e cinquenta e sete mil e quatrocentos e vinte e seis), sem prejuízo da possibilidade de Eventos que possam alterar esse limite na rede (“ledger”) do Ripple.
+
+
+4. RENDIMENTO E PREÇO
+XRPs não geram pagamento de renda ou cupom, nem possuem rentabilidade atrelada a uma taxa de juros. O ganho financeiro com o XRP ocorre única e exclusivamente com a venda do XRP e desde que o XRP seja vendido a um preço superior ao de compra, o que, naturalmente, depende das condições do mercado.
+O preço do XRP é definido pelas variáveis de oferta e, sobretudo, demanda, considerando a oferta finita de XRPs.
+A demanda tem sido impactada fortemente por uma série de variáveis que tem causado a variação brusca e acentuada do preço do XRP, incluindo, mas não se limitando a proibição de negociação e/ou uso de XRPs em determinados países, ataque de hackers com vazamento de dados e/ou furto de XRPs em ambientes de negociação e/ou guarda de XRPs.
+Tais variáveis podem se repetir no futuro e serem acompanhadas ou substituídas por outras, o que poderá afetar negativamente o preço do XRP, motivo pelo qual o Cliente deve estar ciente da possibilidade de variações negativas relevantes e rápidas no preço do referido Ativo Digital/Criptomoeda.
+
+
+5. TRANSFERÊNCIAS INTERNACIONAIS
+O Cliente declara estar ciente de que as operações com XRP que impliquem em transferências internacionais não afastam a obrigatoriedade de se observar as normas cambiais aplicáveis ao país de origem da moeda, especialmente, tratando-se do Brasil, a que impõe a realização de operações de câmbio exclusivamente por meio de instituições autorizadas a operar no mercado câmbio pelo Banco Central do Brasil.
+
+
+6. TRIBUTAÇÃO
+O ganho de capital auferido por pessoas físicas na venda de XRPs está sujeito à incidência de Imposto de Renda mensalmente, conforme alíquotas progressivas entre 15% (quinze por cento) e 22,5% (vinte dois e meio por cento), cabendo ao próprio cliente a apuração e o recolhimento do imposto através de DARF.
+Fica isento o ganho de capital auferido na alienação de XRPs, cujo valor total de alienação, no mês em que esta se realizar, seja igual ou inferior a R$ 35.000,00 (trinta e cinco mil reais).
+O Cliente está ciente de que a tributação mencionada está de acordo com a legislação vigente e que a legislação relativa à tributação na compra e venda de XRPs pode ser posteriormente modificada, não tendo a Nycoin a obrigação de informar o Cliente de qualquer alteração posterior na legislação tributária, cabendo ao Cliente fazer o seu próprio acompanhamento.
+
+
+7. AUSÊNCIA DE GARANTIAS
+XRPs NÃO SÃO VALORES MOBILIÁRIOS REGULADOS PELA COMISSÃO DE VALORES MOBILIÁRIOS – CVM, NEM TÍTULOS EMITIDOS OU CHANCELADOS POR QUALQUER GOVERNO, AUTORIDADE CENTRAL OU AUTORIDADE MONETÁRIA, INCLUINDO, MAS NÃO SE LIMITANDO AO BANCO CENTRAL DO BRASIL.
+O RIPPLE NÃO CONTA COM QUALQUER GARANTIA:
+(A) DO FUNDO GARANTIDOR DE CRÉDITOS – FGC;
+(B) DE CONVERSÃO PARA MOEDAS OFICIAIS, COMO O REAL OU DÓLAR, OU OUTRAS CRIPTOMOEDAS;
+(C) DE EXISTÊNCIA DE LASTREAMENTO EM ATIVOS DE QUALQUER ESPÉCIE.
+
+
+8. RISCO
+O XRP É UM ATIVO QUE TEM ELEVADO GRAU DE INCERTEZA COM RELAÇÃO À SUA SEGURANÇA, LASTRO, TRANSFERIBILIDADE, RESERVA DE VALOR OU AO SEU USO COMO MEIO DE PAGAMENTO, ESTANDO SUJEITO, PORTANTO, A UMA VARIAÇÃO BRUSCA E RÁPIDA DE PREÇO, PODENDO, INCLUSIVE, DEIXAR DE TER QUALQUER VALOR E PASSAR A VALER “ZERO”.
+O RIPPLE, PELAS MESMAS CARACTERÍSTICAS ACIMA MENCIONADAS, NÃO É RECOMENDADO A QUALQUER TIPO DE CLIENTES, MAS APENAS ÀQUELES QUE TENHAM PERFIL AGRESSIVO.
+
+
+9. DECLARAÇÕES E RESPONSABILIDADE
+O CLIENTE DECLARA-SE CIENTE DE QUE:
+(i) A Nycoin ATUA COMO MERA INTERMEDIÁRIA NA NEGOCIAÇÃO DO RIPPLE (NÃO ATUA COMO MINERADORA, PRODUZINDO XRPs, NEM COMO “VALIDADORA” DAS TRANSAÇÕES OCORRIDAS NA REDE DO BLOCKCHAIN), NÃO PODENDO SER RESPONSABILIZADA POR QUALQUER DANO, PERDA, DIVERGÊNCIA, INDENIZAÇÃO, PENALIDADE E/OU PREJUÍZOS SOFRIDOS PELO CLIENTE QUE NÃO DECORRA, ÚNICA E EXCLUSIVAMENTE, DE FALHA NA PRESTAÇÃO DO SERVIÇO DE INTERMEDIAÇÃO POR SUA CULPA EXCLUSIVA;
+(ii) ASSIM, PERDAS QUE DECORRAM DA DESVALORIZAÇÃO DO PREÇO DO RIPPLE OU DA SUA COMPLETA PERDA DE VALOR, PERDAS QUE DECORRAM DE VIOLAÇÕES NA REDE DO BLOCKCHAIN, PERDAS QUE DECORRAM DE FORKS/AIR DROPS OU DE QUALQUER OUTRO EVENTO NA REDE DO BLOCKCHAIN, BEM COMO QUALQUER PERDA DECORRENTE DE ATIVIDADE SOBRE A QUAL A Nycoin NÃO TENHA INGERÊNCIA OU CONTROLE, PELA NATUREZA DO RIPPLE, NÃO SÃO DE SUA RESPONSABILIDADE;
+(iii) A DECISÃO DE COMPRA DE XRPs, BEM COMO A AVALIAÇÃO DOS RISCOS DA OPERAÇÃO, SÃO DE EXCLUSIVA RESPONSABILIDADE DO CLIENTE;
+(iv) A COMPRA DE ATIVOS DIGITAIS É UMA OPERAÇÃO DE ALTO RISCO E EXISTE A POSSIBILIDADE DE PERDA DE TODO O CAPITAL USADO NA COMPRA;
+(v) RENTABILIDADE PASSADA NÃO É GARANTIA DE RENTABILIDADE FUTURA;
+(vi) NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Termos para compra de Zcash
+Última modificação em 06 de Janeiro de 2019.
+Em vigor desde 06 de Janeiro de 2019.
+O Cliente, já qualificado na Ficha Cadastral (“Cliente”), firma o presente Termo para Compra de Zcash (“Termo”), que é pressuposto fundamental para realizar a transação de compra de Zcash (ZEC) por meio da Nycoin Intermediação Ltda. (“Nycoin”), inscrita no CNPJ/MF sob o nº 24.376.334/0001-22, com sede e domicílio na Avenida Brigadeiro Faria Lima, 3.600, 10º andar, conjunto 101 e 102, CEP 04538-132, na Cidade de São Paulo, Estado de São Paulo, em conformidade com os termos e condições abaixo.
+
+
+INFORMAÇÕES INICIAIS RELEVANTES
+O CLIENTE TEM CIÊNCIA DE QUE ESTE TERMO NÃO TEM A PRETENSÃO DE ESGOTAR AS INFORMAÇÕES RELACIONADAS AO ZCASH, CONSTITUINDO UM BREVE RESUMO DOS DADOS BÁSICOS CONHECIDOS REFERENTES AO ZCASH. O Cliente deve buscar informações adicionais e complementares sobre o Zcash de forma a aprofundar seu conhecimento e entendimento sobre o referido ativo, seu funcionamento, características e riscos, antes de realizar a compra desse Ativo Digital/Criptomoeda.
+O ZCASH (ZEC) É UM ATIVO NOVO E COM UMA DINÂMICA DE VALIDAÇÃO DE TRANSAÇÕES E DE REGISTRO DE TITULARIDADE DIFERENTE E NÃO USUAL, O QUE PROVOCA UMA SÉRIE DE INCERTEZAS QUANTO AO SEU FUTURO COMO UM ATIVO DE VALOR. A Nycoin RECOMENDA, POR ISSO, QUE O CLIENTE NÃO UTILIZE PARTE SUBSTANCIAL DE SEU PATRIMÔNIO PARA A COMPRA DE ZEC, MAS, AO CONTRÁRIO, USE PARTE BASTANTE REDUZIDA DO SEU PATRIMÔNIO PARA ESSA FINALIDADE, POR SE TRATAR DE UM ATIVO DE ALTO RISCO E COM GRANDE VOLATILIDADE.
+NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Os termos utilizados nesse Termo devem ser interpretados e entendidos de acordo com as definições que constam do Termo de Uso e Condições da Nycoin, disponível no site www.Nycoin.com.br/#/termos-uso, cuja adesão prévia é obrigatória para o início das operações com a Nycoin.
+
+
+1. PRODUTO
+Zcash é um ativo digital baseado em um protocolo matemático definido por um código-fonte aberto, criado pela Zcash Electric Coin Company em 2016.
+O titular (proprietário) do Zcash é definido através de um processo realizado junto a uma rede de computadores que armazena os registros de emissão e de transação de cada Zcash. O conjunto desses registros é chamado de “Blockchain do Zcash”.
+
+
+2. PROCESSO DE GERAÇÃO DE ZECs
+ZEC são gerados através de um processo denominado “mineração", que é realizado por diferentes “mineradores”, em variados lugares do mundo. As regras da mineração, que devem ser respeitadas, de forma indiscriminada e geral, por todos os mineradores, fazem parte do protocolo matemático que rege o funcionamento do Zcash e compõem o Blockchain do Zcash.
+Qualquer indivíduo com os recursos e sistemas necessários a realização do processo de geração de ZECs pode se tornar um minerador, não sendo necessária autorização, certificação, registro ou aprovação (pela Rede do Blockchainou por alguma entidade credenciadora) para que um indivíduo se torne minerador.
+O minerador não garante o valor do Zcash. O minerador apenas participa do processo de geração de ZECs. O valor do Zcash corresponde ao preço pelo qual é negociado, que, por sua vez, é definido pela oferta e demanda pelo referido ativo.
+
+
+3. QUANTIDADE FINITA DE ZECs
+ZECs possuem apenas existência digital, e não física, através do registro no Blockchain do Zcash. Cada Zcash pode ser dividido em até 100 (cem) milhões de unidades chamadas.
+Os ZECs são emitidos a uma taxa decrescente, o que faz com que a emissão de novos ZECs seja reduzida pela metade a cada período de 4 (quatro) anos. O protocolo matemático que compõe o Zcash garante que a soma da quantidade de ZECs armazenadas no Blockchain do Zcash será de, no máximo, de 21 (vinte e um) milhões de unidades, sem prejuízo da possibilidade de Eventos que possam alterar esse limite no Blockchain do Zcash.
+
+
+4. RENDIMENTO E PREÇO
+ZECs não geram pagamento de renda ou cupom, nem possuem rentabilidade atrelada a uma taxa de juros. O ganho financeiro com o Zcash ocorre única e exclusivamente com a venda do Zcash e desde que o Zcash seja vendido a um preço superior ao de compra, o que, naturalmente, depende das condições do mercado.
+O preço do Zcash é definido pelas variáveis de oferta e, sobretudo, demanda, considerando a oferta finita de ZECs.
+A demanda tem sido impactada fortemente por uma série de variáveis que tem causado a variação brusca e acentuada do preço do ZEC, incluindo, mas não se limitando a proibição de negociação e/ou uso de ZECs em determinados países, ataque de hackers com vazamento de dados e/ou furto de ZECs em ambientes de negociação e/ou guarda de ZECs.
+Tais variáveis podem se repetir no futuro e serem acompanhadas ou substituídas por outras, o que poderá afetar negativamente o preço do ZEC, motivo pelo qual o Cliente deve estar ciente da possibilidade de variações negativas relevantes e rápidas no preço do referido Ativo Digital/Criptomoeda.
+
+
+5. TRANSFERÊNCIAS INTERNACIONAIS
+O Cliente declara estar ciente de que as operações com ZEC que impliquem em transferências internacionais não afastam a obrigatoriedade de se observar as normas cambiais aplicáveis ao país de origem da moeda, especialmente, tratando-se do Brasil, a que impõe a realização de operações de câmbio exclusivamente por meio de instituições autorizadas a operar no mercado câmbio pelo Banco Central do Brasil.
+
+
+6. TRIBUTAÇÃO
+O ganho de capital auferido por pessoas físicas na venda ZECs está sujeito à incidência de Imposto de Renda mensalmente, conforme alíquotas progressivas entre 15% (quinze por cento) e 22,5% (vinte dois e meio por cento), cabendo ao próprio cliente a apuração e o recolhimento do imposto através de DARF.
+Fica isento o ganho de capital auferido na alienação de ZECs, cujo valor total de alienação, no mês em que esta se realizar, seja igual ou inferior a R$ 35.000,00 (trinta e cinco mil reais).
+O Cliente está ciente de que a tributação mencionada está de acordo com a legislação vigente e que a legislação relativa à tributação na compra e venda de ZECs pode ser posteriormente modificada, não tendo a Nycoin a obrigação de informar o Cliente de qualquer alteração posterior na legislação tributária, cabendo ao Cliente fazer o seu próprio acompanhamento.
+
+
+7. AUSÊNCIA DE GARANTIAS
+ZECs NÃO SÃO VALORES MOBILIÁRIOS REGULADOS PELA COMISSÃO DE VALORES MOBILIÁRIOS – CVM, NEM TÍTULOS EMITIDOS OU CHANCELADOS POR QUALQUER GOVERNO, AUTORIDADE CENTRAL OU AUTORIDADE MONETÁRIA, INCLUINDO, MAS NÃO SE LIMITANDO AO BANCO CENTRAL DO BRASIL.
+O ZCASH NÃO CONTA COM QUALQUER GARANTIA:
+(A) DO FUNDO GARANTIDOR DE CRÉDITOS – FGC;
+(B) DE CONVERSÃO PARA MOEDAS OFICIAIS, COMO O REAL OU DÓLAR, OU OUTRAS CRIPTOMOEDAS;
+(C) DE EXISTÊNCIA DE LASTREAMENTO EM ATIVOS DE QUALQUER ESPÉCIE.
+
+
+8. RISCO
+O ZCASH É UM ATIVO QUE TEM ELEVADO GRAU DE INCERTEZA COM RELAÇÃO À SUA SEGURANÇA, LASTRO, TRANSFERIBILIDADE, RESERVA DE VALOR OU AO SEU USO COMO MEIO DE PAGAMENTO, ESTANDO SUJEITO, PORTANTO, A UMA VARIAÇÃO BRUSCA E RÁPIDA DE PREÇO, PODENDO, INCLUSIVE, DEIXAR DE TER QUALQUER VALOR E PASSAR A VALER “ZERO”.
+O ZCASH, PELAS MESMAS CARACTERÍSTICAS ACIMA MENCIONADAS, NÃO É RECOMENDADO A QUALQUER TIPO DE CLIENTES, MAS APENAS ÀQUELES QUE TENHAM PERFIL AGRESSIVO.
+
+
+9. DECLARAÇÕES E RESPONSABILIDADE
+O CLIENTE DECLARA-SE CIENTE DE QUE:
+(i) A Nycoin ATUA COMO MERA INTERMEDIÁRIA NA NEGOCIAÇÃO DO ZCASH (NÃO ATUA COMO MINERADORA, PRODUZINDO ZECs, NEM COMO “VALIDADORA” DAS TRANSAÇÕES OCORRIDAS NA REDE DO BLOCKCHAIN), NÃO PODENDO SER RESPONSABILIZADA POR QUALQUER DANO, PERDA, DIVERGÊNCIA, INDENIZAÇÃO, PENALIDADE E/OU PREJUÍZOS SOFRIDOS PELO CLIENTE QUE NÃO DECORRA, ÚNICA E EXCLUSIVAMENTE, DE FALHA NA PRESTAÇÃO DO SERVIÇO DE INTERMEDIAÇÃO POR SUA CULPA EXCLUSIVA;
+(ii) ASSIM, PERDAS QUE DECORRAM DA DESVALORIZAÇÃO DO PREÇO DO ZCASH OU DA SUA COMPLETA PERDA DE VALOR, PERDAS QUE DECORRAM DE VIOLAÇÕES NA REDE DO BLOCKCHAIN, PERDAS QUE DECORRAM DE FORKS/AIR DROPS OU DE QUALQUER OUTRO EVENTO NA REDE DO BLOCKCHAIN, BEM COMO QUALQUER PERDA DECORRENTE DE ATIVIDADE SOBRE A QUAL A Nycoin NÃO TENHA INGERÊNCIA OU CONTROLE, PELA NATUREZA DO ZECs, NÃO SÃO DE SUA RESPONSABILIDADE;
+(iii) A DECISÃO DE COMPRA DE ZECs, BEM COMO A AVALIAÇÃO DOS RISCOS DA OPERAÇÃO, SÃO DE EXCLUSIVA RESPONSABILIDADE DO CLIENTE;
+(iv) A COMPRA DE ATIVOS DIGITAIS É UMA OPERAÇÃO DE ALTO RISCO E EXISTE A POSSIBILIDADE DE PERDA DE TODO O CAPITAL USADO NA COMPRA;
+(v) RENTABILIDADE PASSADA NÃO É GARANTIA DE RENTABILIDADE FUTURA;
+(vi) NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Termos para compra de Bitcoin Cash
+Última modificação em 06 de Janeiro de 2019.
+Em vigor desde 06 de Janeiro de 2019.
+O Cliente, já qualificado na Ficha Cadastral (“Cliente”), firma o presente Termo para Compra de Bitcoin Cash (“Termo”), que é pressuposto fundamental para realizar a transação de compra de Bitcoin Cash (“BCH”) por meio da Nycoin Intermediação Ltda. (“Nycoin”), inscrita no CNPJ/MF sob o nº 24.376.334/0001-22, com sede e domicílio na Avenida Brigadeiro Faria Lima, 3.600, 10º andar, conjunto 101 e 102, CEP 04538-132, na Cidade de São Paulo, Estado de São Paulo, em conformidade com os termos e condições abaixo.
+
+
+INFORMAÇÕES INICIAIS RELEVANTES
+O CLIENTE TEM CIÊNCIA DE QUE ESTE TERMO NÃO TEM A PRETENSÃO DE ESGOTAR AS INFORMAÇÕES RELACIONADAS AO BITCOIN CASH, CONSTITUINDO UM BREVE RESUMO DOS DADOS BÁSICOS CONHECIDOS REFERENTES AO BITCOIN CASH. O Cliente deve buscar informações adicionais e complementares sobre o Bitcoin Cash de forma a aprofundar seu conhecimento e entendimento sobre o referido ativo, seu funcionamento, características e riscos, antes de realizar a compra desse Ativo Digital/Criptomoeda.
+O BITCOIN CASH (BCH) É UM ATIVO NOVO E COM UMA DINÂMICA DE VALIDAÇÃO DE TRANSAÇÕES E DE REGISTRO DE TITULARIDADE DIFERENTE E NÃO USUAL, O QUE PROVOCA UMA SÉRIE DE INCERTEZAS QUANTO AO SEU FUTURO COMO UM ATIVO DE VALOR. A Nycoin RECOMENDA, POR ISSO, QUE O CLIENTE NÃO UTILIZE PARTE SUBSTANCIAL DE SEU PATRIMÔNIO PARA A COMPRA DE BCH, MAS, AO CONTRÁRIO, USE PARTE BASTANTE REDUZIDA DO SEU PATRIMÔNIO PARA ESSA FINALIDADE, POR SE TRATAR DE UM ATIVO DE ALTO RISCO E COM GRANDE VOLATILIDADE.
+NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+Os termos utilizados nesse Termo devem ser interpretados e entendidos de acordo com as definições que constam do Termo de Uso e Condições da Nycoin, disponível no site www.Nycoin.com.br/#/termos-uso, cuja adesão prévia é obrigatória para o início das operações com a Nycoin.
+
+
+1. PRODUTO
+Bitcoin Cash (BCH) é um ativo digital criado a partir de um cópia (“fork”) do Bitcoin, o qual é um ativo digital baseado em um protocolo matemático definido por um código-fonte aberto, criado por um programador de computador anônimo atuando sob o pseudônimo de Satoshi Nakamoto e publicado em 03/01/2009. A cópia ocorreu em 01/08/2017.
+O titular (proprietário) do Bitcoin Cash é definido através de um processo realizado junto a uma rede de computadores que armazena os registros de emissão e de transação de cada Bitcoin Cash. O conjunto desses registros é chamado de “Blockchain do Bitcoin Cash”.
+
+
+2. PROCESSO DE GERAÇÃO DE BCHs
+BCHs são gerados através de um processo denominado “mineração", que é realizado por diferentes “mineradores”, em variados lugares do mundo. As regras da mineração, que devem ser respeitadas, de forma indiscriminada e geral, por todos os mineradores, fazem parte do protocolo matemático que rege o funcionamento do Bitcoin Cash e compõem o Blockchain do Bitcoin Cash.
+Qualquer indivíduo com os recursos e sistemas necessários a realização do processo de geração de BCHs pode se tornar um minerador, não sendo necessária autorização, certificação, registro ou aprovação (pela Rede do Blockchainou por alguma entidade credenciadora) para que um indivíduo se torne minerador.
+O minerador não garante o valor do Bitcoin Cash. O minerador apenas participa do processo de geração de BCH. O valor do Bitcoin Cash corresponde ao preço pelo qual é negociado, que, por sua vez, é definido pela oferta e demanda pelo referido ativo.
+
+
+3. QUANTIDADE FINITA DE BCHs
+BCHs possuem apenas existência digital, e não física, através do registro no Blockchain do Bitcoin Cash. Cada Bitcoin Cash pode ser dividido em até 100 (cem) milhões de unidades chamadas satoshis.
+Os BCHs são emitidos a uma taxa decrescente, o que faz com que a emissão de novos BCH seja reduzida pela metade a cada período de 4 (quatro) anos. O protocolo matemático que compõe o Bitcoin Cash garante que a soma da quantidade de BCH armazenadas no Blockchain do Bitcoin Cash será de, no máximo, de 21 (vinte e um) milhões de unidades, sem prejuízo da possibilidade de Eventos que possam alterar esse limite no Blockchain do Bitcoin Cash.
+
+
+4. RENDIMENTO E PREÇO
+BCH não geram pagamento de renda ou cupom, nem possuem rentabilidade atrelada a uma taxa de juros. O ganho financeiro com o Bitcoin Cash ocorre única e exclusivamente com a venda do Bitcoin Cash e desde que o Bitcoin Cash seja vendido a um preço superior ao de compra, o que, naturalmente, depende das condições do mercado.
+O preço do Bitcoin Cash é definido pelas variáveis de oferta e, sobretudo, demanda, considerando a oferta finita de BCH.
+A demanda tem sido impactada fortemente por uma série de variáveis que tem causado a variação brusca e acentuada do preço do Bitcoin Cash, incluindo, mas não se limitando a proibição de negociação e/ou uso de BCH em determinados países, ataque de hackers com vazamento de dados e/ou furto de BCH em ambientes de negociação e/ou guarda de BCH.
+Tais variáveis podem se repetir no futuro e serem acompanhadas ou substituídas por outras, o que poderá afetar negativamente o preço do Bitcoin Cash, motivo pelo qual o Cliente deve estar ciente da possibilidade de variações negativas relevantes e rápidas no preço do referido Ativo Digital/Criptomoeda.
+
+
+5. TRANSFERÊNCIAS INTERNACIONAIS
+O Cliente declara estar ciente de que as operações com Bitcoin Cash que impliquem em transferências internacionais não afastam a obrigatoriedade de se observar as normas cambiais aplicáveis ao país de origem da moeda, especialmente, tratando-se do Brasil, a que impõe a realização de operações de câmbio exclusivamente por meio de instituições autorizadas a operar no mercado câmbio pelo Banco Central do Brasil.
+
+
+6. TRIBUTAÇÃO
+O ganho de capital auferido por pessoas físicas na venda de BCH está sujeito à incidência de Imposto de Renda mensalmente, conforme alíquotas progressivas entre 15% (quinze por cento) e 22,5% (vinte dois e meio por cento), cabendo ao próprio cliente a apuração e o recolhimento do imposto através de DARF.
+Fica isento o ganho de capital auferido na alienação de BCH, cujo valor total de alienação, no mês em que esta se realizar, seja igual ou inferior a R$ 35.000,00 (trinta e cinco mil reais).
+O Cliente está ciente de que a tributação mencionada está de acordo com a legislação vigente e que a legislação relativa à tributação na compra e venda de BCH pode ser posteriormente modificada, não tendo a Nycoin a obrigação de informar o Cliente de qualquer alteração posterior na legislação tributária, cabendo ao Cliente fazer o seu próprio acompanhamento.
+
+
+7. AUSÊNCIA DE GARANTIAS
+BCH NÃO SÃO VALORES MOBILIÁRIOS REGULADOS PELA COMISSÃO DE VALORES MOBILIÁRIOS – CVM, NEM TÍTULOS EMITIDOS OU CHANCELADOS POR QUALQUER GOVERNO, AUTORIDADE CENTRAL OU AUTORIDADE MONETÁRIA, INCLUINDO, MAS NÃO SE LIMITANDO AO BANCO CENTRAL DO BRASIL.
+O BITCOIN CASH NÃO CONTA COM QUALQUER GARANTIA:
+(A) DO FUNDO GARANTIDOR DE CRÉDITOS – FGC;
+(B) DE CONVERSÃO PARA MOEDAS OFICIAIS, COMO O REAL OU DÓLAR, OU OUTRAS CRIPTOMOEDAS;
+(C) DE EXISTÊNCIA DE LASTREAMENTO EM ATIVOS DE QUALQUER ESPÉCIE.
+
+
+8. RISCO
+O BITCOIN CASH É UM ATIVO QUE TEM ELEVADO GRAU DE INCERTEZA COM RELAÇÃO À SUA SEGURANÇA, LASTRO, TRANSFERIBILIDADE, RESERVA DE VALOR OU AO SEU USO COMO MEIO DE PAGAMENTO, ESTANDO SUJEITO, PORTANTO, A UMA VARIAÇÃO BRUSCA E RÁPIDA DE PREÇO, PODENDO, INCLUSIVE, DEIXAR DE TER QUALQUER VALOR E PASSAR A VALER “ZERO”.
+O BITCOIN CASH, PELAS MESMAS CARACTERÍSTICAS ACIMA MENCIONADAS, NÃO É RECOMENDADO A QUALQUER TIPO DE CLIENTES, MAS APENAS ÀQUELES QUE TENHAM PERFIL AGRESSIVO.
+
+
+9. DECLARAÇÕES E RESPONSABILIDADE
+O CLIENTE DECLARA-SE CIENTE DE QUE:
+(i) A Nycoin ATUA COMO MERA INTERMEDIÁRIA NA NEGOCIAÇÃO DO BITCOIN CASH (NÃO ATUA COMO MINERADORA, PRODUZINDO BCH, NEM COMO “VALIDADORA” DAS TRANSAÇÕES OCORRIDAS NA REDE DO BLOCKCHAIN), NÃO PODENDO SER RESPONSABILIZADA POR QUALQUER DANO, PERDA, DIVERGÊNCIA, INDENIZAÇÃO, PENALIDADE E/OU PREJUÍZOS SOFRIDOS PELO CLIENTE QUE NÃO DECORRA, ÚNICA E EXCLUSIVAMENTE, DE FALHA NA PRESTAÇÃO DO SERVIÇO DE INTERMEDIAÇÃO POR SUA CULPA EXCLUSIVA;
+(ii) ASSIM, PERDAS QUE DECORRAM DA DESVALORIZAÇÃO DO PREÇO DO BITCOIN CASH OU DA SUA COMPLETA PERDA DE VALOR, PERDAS QUE DECORRAM DE VIOLAÇÕES NA REDE DO BLOCKCHAIN, PERDAS QUE DECORRAM DE FORKS/AIR DROPS OU DE QUALQUER OUTRO EVENTO NA REDE DO BLOCKCHAIN, BEM COMO QUALQUER PERDA DECORRENTE DE ATIVIDADE SOBRE A QUAL A Nycoin NÃO TENHA INGERÊNCIA OU CONTROLE, PELA NATUREZA DO BCH, NÃO SÃO DE SUA RESPONSABILIDADE;
+(iii) A DECISÃO DE COMPRA DE BCH, BEM COMO A AVALIAÇÃO DOS RISCOS DA OPERAÇÃO, SÃO DE EXCLUSIVA RESPONSABILIDADE DO CLIENTE;
+(iv) A COMPRA DE ATIVOS DIGITAIS É UMA OPERAÇÃO DE ALTO RISCO E EXISTE A POSSIBILIDADE DE PERDA DE TODO O CAPITAL USADO NA COMPRA;
+(v) RENTABILIDADE PASSADA NÃO É GARANTIA DE RENTABILIDADE FUTURA;
+(vi) NÃO SÃO PERMITIDOS DEPÓSITOS, RESGATES E/OU TRANSFERÊNCIAS DE ATIVOS DIGITAIS/CRIPTOMOEDAS DE E PARA UMA CARTEIRA VIRTUAL (CARTEIRA VIRTUAL OU E-WALLET) POR MEIO DA PLATAFORMA Nycoin. OS DEPÓSITOS/RESGATES E/OU TRANSFERÊNCIAS SERÃO EFETUADOS APENAS EM REAIS, SENDO OBRIGATÓRIO A VENDA DO ATIVO DIGITAL PARA A EFETIVAÇÃO DO RESGATE EM REAIS.
+                </textarea>
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-sm-12 col-md-12">
+                    @Html.CheckBoxFor(model => model.CliConfirmaTermoCompra, new { @class = "fadeIn", id = "accept-terms" }) <span class="fadeIn">Aceito os todos os termos</span>
+                    @Html.ValidationMessageFor(model => model.CliConfirmaTermoCompra)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-md-4"></div>
+                <div class="col-sm-4 col-md-4"><input type="submit" class="btn-default-nycoin fadeIn fourth" value="Concluir" /></div>
+                <div class="col-sm-4 col-md-4"></div>
+            </div>
+        }
+    </div>
+</div>

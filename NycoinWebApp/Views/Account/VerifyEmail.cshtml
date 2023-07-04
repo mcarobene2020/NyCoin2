@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Verifique seu e-mail";
+}
+<!DOCTYPE html>
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+<div class="wrapper fadeInDown">
+    <div class="form-signup-container">
+        <div class="fadeIn first" style="margin:30px ">
+            <label style="font-size:2em;"><strong>Nycoin Bank | Cadastro</strong></label>
+        </div>
+        <i class="material-icons" style="font-size: 48px;color:#56baed;">email</i>
+        <div style="margin: 20px;" id="message-before-send-mail">
+            <p style="font-size:0.9em;">Um link de confirmação de cadastro foi enviado por e-mail para você. Clique nesse link e acesse a sua conta Nycoin.</p>
+
+            <p style="font-size:0.9em;">Ainda não recebeu o e-mail?</p>
+
+            <div class="form-login-footer">
+                <div id="spinner-countdown" class="spinner-border spinner-border-sm" role="status"></div>
+                <p id="countdown-text" style="font-size:0.9em;"><strong>Reenviar e-mail em <span id="countdown-timer" style="font-size:0.9em;"></span></strong></p>
+                <a id="resend-email" class="underline-hover" style="font-size:0.9em;display:none;" href="#">Reenviar e-mail</a>
+            </div>
+        </div>
+        <div style="margin: 20px;display:none;" id="div-resend-email">
+            <p>Digite o seu e-mail abaixo</p>
+            <input type="text" id="login" class="input-text fadeIn second" name="login" placeholder="E-mail" autocomplete="off">
+            <input type="button" id="resend" class="btn-default-nycoin fadeIn fourth" value="Reenviar e-mail">
+        </div>
+        <div style="margin: 20px;display:none;" id="div-verify-email">
+            <p style="font-size:0.9em;">Um e-mail de verificação foi enviado para <strong><span id="span-email"></span></strong>.</p>
+            <p style="font-size:0.9em;">Clique no link enviado no seu e-mail para acessar a sua conta Nycoin.</p>
+
+            <div class="form-login-footer">
+                <i class="material-icons" style="font-size: 36px;color:limegreen;">done</i>
+                <p style="font-size:0.9em;"><strong>E-mail reenviado com sucesso!</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var timeleft = 30;
+        var downloadTimer = setInterval(function () {
+            $("#countdown-timer").text("(" + timeleft + ")");
+            timeleft -= 1;
+            if (timeleft <= 0) {
+                clearInterval(downloadTimer);
+                $("#countdown-timer").hide();
+                $("#countdown-text").hide();
+                $("#spinner-countdown").hide();
+                $("#resend-email").css({ "display": "block" });
+            }
+        }, 1000);
+
+        $("#resend-email").on("click", function (e) {
+            $("#message-before-send-mail").hide();
+            $("#div-resend-email").css({ "display": "block" });
+        });
+
+        $("#resend").on("click", function (e) {
+            $("#div-resend-email").css({ "display": "none" });
+            $("#div-verify-email").css({ "display": "block" });
+            $("#span-email").text($("#login").val());
+        });
+    });
+</script>

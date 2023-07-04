@@ -1,0 +1,1355 @@
+﻿@{
+    ViewBag.Title = "Plataforma Avançada";
+}
+
+<!DOCTYPE html>
+<head>
+
+    <!-- Custom styles for this template-->
+    <link href="@Url.Content("~/Content/sb-admin-2.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/loader.css")" rel="stylesheet">
+    <script src="@Url.Content("~/Scripts/jquery.canvasjs.min.js")"></script>
+
+</head>
+
+<body>
+    <style type="text/css">
+
+        .wrap {
+            position: relative !important;
+            display: inline-block !important;
+            height: 80px;
+            margin-top: 15px;
+            background: #424249;
+        }
+
+            .wrap .span-left {
+                font-size: 0.85em;
+                font-weight: 600;
+                position: absolute !important;
+                padding-left: 5px;
+                top: 40px;
+                left: 0;
+            }
+
+            .wrap .span-right {
+                font-size: 0.85em;
+                font-weight: 600;
+                position: absolute !important;
+                padding-right: 5px;
+                top: 40px;
+                right: 0;
+            }
+
+        .coin-info-box-first {
+            margin-left: 4%;
+            cursor: pointer;
+            width: 200px;
+            background: #2a2a2e;
+        }
+
+        .coin-info-box {
+            cursor: pointer;
+            margin-left: 3%;
+            width: 200px;
+            background: #2a2a2e;
+        }
+
+        .card-background {
+            background: #2a2a2e;
+        }
+
+        .container-background {
+            background: #121213;
+        }
+
+        .coin-icon {
+            width: 15%;
+            top: -15px;
+            position: absolute;
+            left: 0px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        /*table, td {
+            border-collapse: collapse;
+            border: 1px solid #000;
+        }*/
+
+        thead {
+            display: table; /* to take the same width as tr */
+            width: calc(100% - 17px); /* - 17px because of the scrollbar width */
+        }
+
+        tbody {
+            display: block; /* to enable vertical scrolling */
+            max-height: 500px; /* e.g. */
+            overflow-y: auto; /* keeps the scrollbar even if it doesn't need it; display purpose */
+        }
+
+        th, td {
+            padding: 5px;
+            width: 33.33%; /* to enable "word-break: break-all" */
+            /*word-break: break-all;*/ /* 4. */
+        }
+
+        tr {
+            display: table; /* display purpose; th's border */
+            width: 100%;
+            box-sizing: border-box; /* because of the border (Chrome needs this line, but not FF) */
+        }
+
+        td {
+            text-align: center;
+            border-bottom: none;
+            border-left: none;
+        }
+    </style>
+
+    <div>
+        <div id="loader"></div>
+        <p id="loading-message" style="font-weight:600; position: absolute;top: 57%;left: 43%;">Aguarde... Acessando a plataforma</p>
+    </div>
+
+    <!-- Page Wrapper -->
+    <div id="wrapper" class="fadeIn" style="display:none;">
+        <input type="hidden" id="ordensExecutadas" value='@Html.Raw(TempData["OrdensBook"])' />
+        <input type="hidden" id="cotacoesMoedas" value='@Html.Raw(TempData["CotacoesMoedas"])' />
+        <input type="hidden" id="saldoPessoa" value='@Html.Raw(TempData["SaldoPessoa"])' />
+
+        <input type="hidden" id="ordensAbertas" value='@Html.Raw(TempData["OrdensAbertas"])' />
+        <input type="hidden" id="ordensExecutadas" value='@Html.Raw(TempData["OrdensExecutadas"])' />
+        <input type="hidden" id="ordensInativas" value='@Html.Raw(TempData["OrdensInativas"])' />
+
+        <input type="hidden" id="detail" value='@Html.Raw(TempData["Detail"])' />
+
+        <input type="hidden" id="ordensCompra" value="" />
+        <input type="hidden" id="ordensVenda" value="" />
+
+        <input type="hidden" id="interval" value="5" />
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column container-background">
+
+            <!-- Main Content -->
+            <div id="content" class="container-background">
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <!-- Saldo -->
+                        <div class="col-sm-6 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2" style="background: #2a2a2e;">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total aproximado</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="total-aproximado" style="color: white;"></span></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2" style="background: #2a2a2e;">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Saldo disponível</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="saldo-disponivel" style="color: white;"></span></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                        <!-- BTC -->
+                        <div id="div-btc-info" class="mb-4 coin-info-box-first">
+                            <div class="card border-success shadow h-100 py-2 card-background">
+                                <div class="card-body" style="text-align: center;">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><img src="~/Content/images/icons/Bitcoin.png" class="coin-icon" />BTC</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-900"><span id="span-btc" style="color: white;"></span></div>
+                                            <input type="hidden" value="" id="hid-btc-id" />
+                                            <div>
+                                                <span id="span-var-btc" style="font-size: 0.85em;" class="text-sm font-italic text-success mb-1"></span>
+                                                <span style="font-size: 0.85em;" class="text-sm text-gray-700 mb-1">(24h)</span>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-auto">
+                                            <i class="fas fa-dollar-sign text-gray-300"></i>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ETH -->
+                        <div id="div-eth-info" class="mb-4 coin-info-box">
+                            <div class="card border-success shadow h-100 py-2 card-background">
+                                <div class="card-body" style="text-align: center;">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><img src="~/Content/images/icons/Ethereum.png" class="coin-icon" style="background: #4f4f56;" />ETH</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="span-eth" style="color: white;"></span></div>
+                                            <input type="hidden" value="" id="hid-eth-id" />
+                                            <div>
+                                                <span id="span-var-eth" style="font-size: 0.85em;" class="text-sm font-italic text-success mb-1"></span>
+                                                <span style="font-size: 0.85em;" class="text-sm text-gray-700 mb-1">(24h)</span>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-auto">
+                                            <i class="fas fa-dollar-sign text-gray-300"></i>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- XRP -->
+                        <div class="mb-4 coin-info-box" id="div-xrp-info">
+                            <div class="card border-success shadow h-100 py-2 card-background">
+                                <div class="card-body" style="text-align: center;">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><img src="~/Content/images/icons/XRP.png" class="coin-icon" style="background: #4f4f56;" />XRP</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-900"><span id="span-xrp" style="color: white;"></span></div>
+                                            <input type="hidden" value="" id="hid-xrp-id" />
+                                            <div>
+                                                <span id="span-var-xrp" style="font-size: 0.85em;" class="text-sm font-italic text-success mb-1"></span>
+                                                <span style="font-size: 0.85em;" class="text-sm text-gray-700 mb-1">(24h)</span>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-auto">
+                                            <i class="fas fa-dollar-sign text-gray-300"></i>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BCH -->
+                        <div class="mb-4 coin-info-box" id="div-bch-info">
+                            <div class="card border-success shadow h-100 py-2 card-background">
+                                <div class="card-body" style="text-align: center;">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><img src="~/Content/images/icons/Bitcoin Cash.png" class="coin-icon" />BCH</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-900"><span id="span-bch" style="color: white;"></span></div>
+                                            <input type="hidden" value="" id="hid-bch-id" />
+                                            <div>
+                                                <span id="span-var-bch" style="font-size: 0.85em;" class="text-sm font-italic text-success mb-1"></span>
+                                                <span style="font-size: 0.85em;" class="text-sm text-gray-700 mb-1">(24h)</span>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-auto">
+                                            <i class="fas fa-dollar-sign text-gray-300"></i>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LTC -->
+                        <div class="mb-4 coin-info-box" id="div-ltc-info">
+                            <div class="card border-success shadow h-100 py-2 card-background">
+                                <div class="card-body" style="text-align: center;">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><img src="~/Content/images/icons/Litecoin.png" class="coin-icon" />LTC</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-900"><span id="span-ltc" style="color: white;"></span></div>
+                                            <input type="hidden" value="" id="hid-ltc-id" />
+                                            <div>
+                                                <span id="span-var-ltc" style="font-size: 0.85em;" class="text-sm font-italic text-success mb-1"></span>
+                                                <span style="font-size: 0.85em;" class="text-sm text-gray-700 mb-1">(24h)</span>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-auto">
+                                            <i class="fas fa-dollar-sign text-gray-300"></i>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DASH -->
+                        <div class="mb-4 coin-info-box" id="div-dash-info">
+                            <div class="card border-success shadow h-100 py-2 card-background">
+                                <div class="card-body" style="text-align: center;">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><img src="~/Content/images/icons/Dash.png" class="coin-icon" />DASH</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-900"><span id="span-dash" style="color: white;"></span></div>
+                                            <input type="hidden" value="" id="hid-dash-id" />
+                                            <div>
+                                                <span id="span-var-dash" style="font-size: 0.85em;" class="text-sm font-italic text-success mb-1"></span>
+                                                <span style="font-size: 0.85em;" class="text-sm text-gray-700 mb-1">(24h)</span>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-auto">
+                                            <i class="fas fa-dollar-sign text-gray-300"></i>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ZEC -->
+                        <div class="mb-4 coin-info-box" id="div-zec-info">
+                            <div class="card border-success shadow h-100 py-2 card-background">
+                                <div class="card-body" style="text-align: center;">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><img src="~/Content/images/icons/Zcash.png" class="coin-icon" />ZEC</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-900"><span id="span-zec" style="color: white;"></span></div>
+                                            <input type="hidden" value="" id="hid-zec-id" />
+                                            <div>
+                                                <span id="span-var-zec" style="font-size: 0.85em;" class="text-sm font-italic text-success mb-1"></span>
+                                                <span style="font-size: 0.85em;" class="text-sm text-gray-700 mb-1">(24h)</span>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-auto">
+                                            <i class="fas fa-dollar-sign text-gray-300"></i>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico + Ordens de Compra -->
+                    <div class="row">
+                        <!-- Area Chart -->
+                        <div id="coin-chart" class="col-xl-7 col-lg-6">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background:#2a2a2e;">
+                                    <h6 id="coin-name" class="m-0 font-weight-bold text-primary">Bitcoin</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body" style="background:#2a2a2e;">
+                                    <div class="chart-area">
+                                        <div style="text-align:center;margin-bottom:20px;">
+                                            <div class="row">
+                                                <div class="col-sm-1 col-md-1 col-xl-1 col-lg-1"></div>
+                                                <div class="col-sm-2 col-md-2 col-xl-2 col-lg-2" style="padding-left:10px;padding-right:10px;"><input type="button" id="btn-interval-5" onclick="changeInterval('5')" class="btn btn-success" value="5 min" /></div>
+                                                <div class="col-sm-2 col-md-2 col-xl-2 col-lg-2" style="padding-left:10px;padding-right:10px;"><input type="button" id="btn-interval-15" onclick="changeInterval('15')" class="btn btn-outline-success" value="15 min" /></div>
+                                                <div class="col-sm-2 col-md-2 col-xl-2 col-lg-2" style="padding-left:10px;padding-right:10px;"><input type="button" id="btn-interval-30" onclick="changeInterval('30')" class="btn btn-outline-success" value="30 min" /></div>
+                                                <div class="col-sm-2 col-md-2 col-xl-2 col-lg-2" style="padding-left:10px;padding-right:10px;"><input type="button" id="btn-interval-60" onclick="changeInterval('60')" class="btn btn-outline-success" value="1 hora" /></div>
+                                                <div class="col-sm-2 col-md-2 col-xl-2 col-lg-2" style="padding-left:10px;padding-right:10px;"><input type="button" id="btn-interval-1440" onclick="changeInterval('1440')" class="btn btn-outline-success" value="1 dia" /></div>
+                                                <div class="col-sm-1 col-md-1 col-xl-1 col-lg-1"></div>
+                                            </div>
+                                        </div>
+                                        <div id="chart-container" style="width: 100%; height: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="coin-trade" class="card col-xl-5 col-lg-6 shadow mb-4" style="padding: 0px;background: #2a2a2e;">
+                            <div class="card-body" style="padding: 0px;">
+                                <ul class="nav nav-tabs" id="buy-sell-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" style="background: #56baed; color: white;" id="buy-tab" data-toggle="tab" href="#buy" role="tab" aria-controls="buy" aria-selected="true">Comprar</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="sell-tab" data-toggle="tab" href="#sell" role="tab" aria-controls="sell" aria-selected="false">Vender</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="sell-buy-tabs">
+                                    <!-- buy -->
+                                    <div class="tab-pane fade show active" id="buy" role="tabpanel" aria-labelledby="buy-tab">
+                                        <table>
+                                            <tr>
+                                                <td style="width:10%;text-align:center;"></td>
+                                                <td style="width:20%;text-align:center;">
+                                                    <div class="row" style="padding:10px;"><div class="col-sm-4"><div class="col-sm-6"><input type="button" id="btn-boleta-1" onclick="selectBoletMode(1)" value="Mercado" class="btn btn-primary" /></div></div></div>
+                                                    <div class="row" style="padding:10px;"><div class="col-sm-4"><div class="col-sm-6"><input type="button" id="btn-boleta-2" onclick="selectBoletMode(2)" value="Limitada" class="btn btn-outline-primary" /></div></div></div>
+                                                    <div class="row" style="padding:10px;"><div class="col-sm-4"><div class="col-sm-6"><input type="button" id="btn-boleta-3" onclick="selectBoletMode(3)" value="Stop" class="btn btn-outline-primary" /></div></div></div>
+                                                    <div class="row" style="padding:10px;"><div class="col-sm-4"><div class="col-sm-6"><input type="button" id="btn-boleta-4" onclick="selectBoletMode(4)" value="Iceberg" class="btn btn-outline-primary" /></div></div></div>
+                                                    <div class="row" style="padding:10px;"><div class="col-sm-4"><div class="col-sm-6"><input type="button" id="btn-boleta-5" onclick="selectBoletMode(5)" value="IOC" class="btn btn-outline-primary" /></div></div></div>
+                                                    <input type="hidden" id="id-boleta-type" value="1" />
+                                                </td>
+                                                <td style="width:70%">
+                                                    <div style="padding: 20px;">
+                                                        <div class="row">
+                                                            <div class="col-sm-4"></div>
+                                                            <div class="col-sm-4" style="text-align:center;">
+                                                                <p style="color: white;">Saldo disponível</p>
+                                                                <p style="font-size: 1.5em; font-weight:700;margin-top:-20px;color: white;">R$ 0,00</p>
+                                                            </div>
+                                                            <div class="col-sm-4"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12" style="text-align: center;">
+                                                                <p style="color: white;">Selecione o percentual do seu saldo</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="margin-top:-10px;">
+                                                            <div class="col-sm-2"></div>
+                                                            <div class="col-sm-2" style="text-align: center;">
+                                                                <input type="button" id="btn-25" value="25%" class="btn btn-primary" />
+                                                            </div>
+                                                            <div class="col-sm-1"></div>
+                                                            <div class="col-sm-2" style="text-align: center;">
+                                                                <input type="button" id="btn-50" value="50%" class="btn btn-primary" />
+                                                            </div>
+                                                            <div class="col-sm-1"></div>
+                                                            <div class="col-sm-2" style="text-align: center;">
+                                                                <input type="button" id="btn-100" value="100%" class="btn btn-primary" />
+                                                            </div>
+                                                            <div class="col-sm-2"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-6">
+                                                                <label class="input-text wrap" style="width: 100%;padding: 2px;">
+                                                                    <span class="wrap span-left" style="font-size: 0.85em;font-weight: 600;height: 20px;color: white;">Reais</span>
+                                                                    <span class="wrap span-right" style="font-size: 0.85em;font-weight: 600;height: 20px;color: white;">Valor</span>
+                                                                    <span class="" style="font-size: 16px;font-weight: 700;color: white;">R$</span>
+                                                                    <input type="text" name="boleta-value" autocomplete="off" maxlength="10" id="buy-value" class="input-text" style="padding: 4px;text-align: left;font-weight: 700;background: #424249;border: 0;color: white;">
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                        <div class="row" style="margin-top: 20px;">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-3">
+                                                                <span style="padding-left: 10px;font-size: 0.85em;font-weight: 300;height: 20px;color: white;">Quantidade</span>
+                                                            </div>
+                                                            <div class="col-sm-3" style="text-align: right;">
+                                                                <span style="font-size: 0.85em;font-weight: 300;height: 20px;color: white;" id="span-quantity">0,00000000</span> <span id="span-qtd-buy-coin" style="font-size: 0.85em;font-weight: 300;height: 20px;color: white;">BTC</span>
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-3">
+                                                                <span style="padding-left: 10px;font-size: 0.85em;font-weight: 300;height: 20px;color: white;">Taxa </span><i class="fas fa-info-circle" style="color: white;" data-toggle="tooltip" title="Taxa de negociação"></i>
+                                                            </div>
+                                                            <div class="col-sm-3" style="text-align: right;">
+                                                                <span style="font-size: 0.85em;font-weight: 300;height: 20px;color: white;" id="span-tax">0</span> <span id="span-tax-buy-coin" style="font-size: 0.85em;font-weight: 300;height: 20px;color: white;">BTC</span>
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-6">
+                                                                <hr style="border-color: white;" />
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-3">
+                                                                <span style="padding-left: 10px;font-size: 0.85em;font-weight: 800;height: 20px;color: white;">Líquido </span>
+                                                            </div>
+                                                            <div class="col-sm-3" style="text-align: right;">
+                                                                <span style="font-size: 0.85em;font-weight: 800;height: 20px;color: white;" id="span-liquid-value">0</span> <span id="span-lv-buy-coin" style="font-size: 0.85em;font-weight: 800;height: 20px;color: white;">BTC</span>
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                        <div class="row" style="margin-top: 20px;">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-6">
+                                                                <input type="button" id="buy-buy-coins" value="Comprar" style="font-weight:800;width:100%;" class="btn btn-primary" />
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- sell -->
+                                    <div class="tab-pane fade" id="sell" role="tabpanel" aria-labelledby="sell-tab">
+                                        <table>
+                                            <tr>
+                                                <td style="width:10%;text-align:center;"></td>
+                                                <td style="width:20%;text-align:center;">
+                                                    <div class="row" style="padding:10px;"><div class="col-sm-4"><div class="col-sm-6"><input type="button" id="btn-boleta-sell-1" onclick="selectBoletSellMode(1)" value="Mercado" class="btn btn-warning" /></div></div></div>
+                                                    <div class="row" style="padding:10px;"><div class="col-sm-4"><div class="col-sm-6"><input type="button" id="btn-boleta-sell-2" onclick="selectBoletSellMode(2)" value="Limitada" class="btn btn-outline-warning" /></div></div></div>
+                                                    <div class="row" style="padding:10px;"><div class="col-sm-4"><div class="col-sm-6"><input type="button" id="btn-boleta-sell-3" onclick="selectBoletSellMode(3)" value="Stop" class="btn btn-outline-warning" /></div></div></div>
+                                                    <div class="row" style="padding:10px;"><div class="col-sm-4"><div class="col-sm-6"><input type="button" id="btn-boleta-sell-4" onclick="selectBoletSellMode(4)" value="Iceberg" class="btn btn-outline-warning" /></div></div></div>
+                                                    <div class="row" style="padding:10px;"><div class="col-sm-4"><div class="col-sm-6"><input type="button" id="btn-boleta-sell-5" onclick="selectBoletSellMode(5)" value="IOC" class="btn btn-outline-warning" /></div></div></div>
+                                                    <input type="hidden" id="id-boleta-sell-type" value="1" />
+                                                </td>
+                                                <td style="width:70%">
+                                                    <div style="padding: 20px;">
+                                                        <div class="row">
+                                                            <div class="col-sm-4"></div>
+                                                            <div class="col-sm-4" style="text-align:center;">
+                                                                <p style="color: white;">Saldo disponível</p>
+                                                                <p style="font-size: 1.5em; font-weight:700;margin-top:-20px;color: white;">R$ 0,00</p>
+                                                            </div>
+                                                            <div class="col-sm-4"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12" style="text-align: center;">
+                                                                <p style="color: white;">Selecione o percentual do seu saldo</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="margin-top:-10px;">
+                                                            <div class="col-sm-2"></div>
+                                                            <div class="col-sm-2" style="text-align: center;">
+                                                                <input type="button" id="btn-25" value="25%" class="btn btn-danger" />
+                                                            </div>
+                                                            <div class="col-sm-1"></div>
+                                                            <div class="col-sm-2" style="text-align: center;">
+                                                                <input type="button" id="btn-50" value="50%" class="btn btn-danger" />
+                                                            </div>
+                                                            <div class="col-sm-1"></div>
+                                                            <div class="col-sm-2" style="text-align: center;">
+                                                                <input type="button" id="btn-100" value="100%" class="btn btn-danger" />
+                                                            </div>
+                                                            <div class="col-sm-2"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-6">
+                                                                <label class="input-text wrap" style="width: 100%;padding: 2px;">
+                                                                    <span class="wrap span-left" style="font-size: 0.85em;font-weight: 600;height: 20px;color: white;">Quantidade</span>
+                                                                    <span id="span-sell-coin" class="wrap span-right" style="font-size: 0.85em;font-weight: 600;height: 20px;color: white;">BTC</span>
+                                                                    <span class="" style="font-size: 16px;font-weight: 700;color: white;"></span>
+                                                                    <input type="text" name="sell-value" autocomplete="off" maxlength="10" id="sell-value" class="input-text" style="padding: 4px;text-align: left;font-weight: 700;background: #424249;border: 0;color: white;">
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                        <div class="row" style="margin-top: 20px;">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-3">
+                                                                <span style="padding-left: 10px;font-size: 0.85em;font-weight: 300;height: 20px;color: white;">Bruto</span>
+                                                            </div>
+                                                            <div class="col-sm-3" style="text-align: right;">
+                                                                <span style="font-size: 0.85em;font-weight: 300;height: 20px;color: white;">R$</span> <span style="font-size: 0.85em;font-weight: 300;height: 20px;color: white;" id="sell-span-quantity">0,00</span>
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-3">
+                                                                <span style="padding-left: 10px;font-size: 0.85em;font-weight: 300;height: 20px;color: white;">Taxa </span><i style="color: white;" class="fas fa-info-circle" data-toggle="tooltip" title="Taxa de negociação"></i>
+                                                            </div>
+                                                            <div class="col-sm-3" style="text-align: right;">
+                                                                <span style="font-size: 0.85em;font-weight: 300;height: 20px;color: white;">R$</span> <span style="font-size: 0.85em;font-weight: 300;height: 20px;color: white;" id="sell-span-tax">0,00</span>
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-6">
+                                                                <hr style="border-color: white;" />
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-3">
+                                                                <span style="padding-left: 10px;font-size: 0.85em;font-weight: 800;height: 20px;color: white;">Líquido </span>
+                                                            </div>
+                                                            <div class="col-sm-3" style="text-align: right;">
+                                                                <span style="font-size: 0.85em;font-weight: 800;height: 20px;color: white;">R$</span> <span style="font-size: 0.85em;font-weight: 800;height: 20px;color: white;" id="sell-span-liquid-value">0,00</span>
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                        <div class="row" style="margin-top: 20px;">
+                                                            <div class="col-sm-3"></div>
+                                                            <div class="col-sm-6">
+                                                                <input type="button" id="sell-sell-coins" value="Vender" style="font-weight:800;width:100%;" class="btn btn-danger" />
+                                                            </div>
+                                                            <div class="col-sm-3"></div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Book de Ofertas -->
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col-xl-4 col-lg-4" style="padding-left: 10px;padding-right: 10px;">
+                            <div class="card shadow mb-4" style="background: #2a2a2e;">
+                                <div class="card-body" style="padding: 0px;">
+                                    <ul class="nav nav-tabs" id="buy-sell-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" style="background: #56baed; color: white;" id="open-orders-tab" data-toggle="tab" href="#open-orders" role="tab" aria-controls="open-orders" aria-selected="true">Ordens Abertas</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="executed-orders-tab" data-toggle="tab" href="#executed-orders" role="tab" aria-controls="executed-orders" aria-selected="false">Ordens Executadas</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="inactive-orders-tab" data-toggle="tab" href="#inactive-orders" role="tab" aria-controls="inactive-orders" aria-selected="false">Ordens Inativas</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="orders-tabs">
+                                        <!-- open-orders -->
+                                        <div class="tab-pane fade show active" id="open-orders" role="tabpanel" aria-labelledby="open-orders-tab">
+                                            <div style="padding: 20px;" class="table-responsive">
+                                                <table class="table" id="table-active-orders" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="color: white;text-align:center;width:16.67%;">Data</th>
+                                                            <th style="color: white;text-align:center;width:16%;">Tipo</th>
+                                                            <th style="color: white;text-align:center;width:17%;">Quantidade</th>
+                                                            <th style="color: white;text-align:center;width:16.67%;">Exec.</th>
+                                                            <th style="color: white;text-align:center;width:16.67%;">Preço</th>
+                                                            <th style="color: white;text-align:center;width:16.67%;">Ação</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr></tr>
+                                                    </tbody>
+                                                </table>
+                                                <div id="active-orders-empty-message" style="text-align:center;">
+                                                    <p style="color:white;font-weight:700">Você não tem nenhuma ordem aberta</p>
+                                                    <p style="color:white;">Negocie criptomoedas e acompanhe aqui seu histórico de ordens.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- executed-orders -->
+                                        <div class="tab-pane fade" id="executed-orders" role="tabpanel" aria-labelledby="executed-orders-tab">
+                                            <div style="padding: 20px;" class="table-responsive">
+                                                <table class="table" id="table-executed-orders" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="color: white;text-align:center;width:20%;">Data</th>
+                                                            <th style="color: white;text-align:center;width:20%;">Tipo</th>
+                                                            <th style="color: white;text-align:center;width:20%;">Quantidade</th>
+                                                            <th style="color: white;text-align:center;width:20%;">Preço</th>
+                                                            <th style="color: white;text-align:center;width:20%;">Fee Negociação</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr></tr>
+                                                    </tbody>
+                                                </table>
+                                                <div id="executed-orders-empty-message" style="text-align:center;">
+                                                    <p style="color:white;font-weight:700">Você não tem nenhuma ordem executada</p>
+                                                    <p style="color:white;">Negocie criptomoedas e acompanhe aqui seu histórico de ordens.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- inactive-orders -->
+                                        <div class="tab-pane fade" id="inactive-orders" role="tabpanel" aria-labelledby="inactive-orders-tab">
+                                            <div style="padding: 20px;" class="table-responsive">
+                                                <table class="table" id="table-inactive-orders" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="color: white;text-align:center;width:20%;">Data</th>
+                                                            <th style="color: white;text-align:center;width:20%;">Tipo</th>
+                                                            <th style="color: white;text-align:center;width:20%;">Quantidade</th>
+                                                            <th style="color: white;text-align:center;width:20%;">Exec.</th>
+                                                            <th style="color: white;text-align:center;width:20%;">Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr></tr>
+                                                    </tbody>
+                                                </table>
+                                                <div id="inactive-orders-empty-message" style="text-align:center;">
+                                                    <p style="color:white;font-weight:700">Você não tem nenhuma ordem inativa</p>
+                                                    <p style="color:white;">Negocie criptomoedas e acompanhe aqui seu histórico de ordens.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4" style="padding-left: 10px;padding-right: 10px;">
+                            <div class="card shadow mb-4" style="background: #2a2a2e;">
+                                <div class="card-header py-3" style="background: #2a2a2e;">
+                                    <h6 class="m-0 font-weight-bold text-primary">Histórico de Trades</h6>
+                                </div>
+                                <div class="card-body table-wrapper">
+                                    <div class="table-responsive">
+                                        <table class="table" id="table-trades-history" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th style="color: white;text-align:center;">Volume</th>
+                                                    <th style="color: white;text-align:center;">Preço</th>
+                                                    <th style="color: white;text-align:center;">Tempo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4" style="padding-left: 10px;padding-right: 10px;">
+                            <div class="card shadow mb-4" style="background: #2a2a2e;">
+                                <div class="card-header py-3" style="background: #2a2a2e;">
+                                    <h6 class="m-0 font-weight-bold text-primary">Book de Ofertas</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table" id="table-book-offers" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th style="color: white;text-align:center;width:25%;">Volume</th>
+                                                    <th style="color: white;text-align:center;width:25%;">Preço</th>
+                                                    <th style="color: white;text-align:center;width:25%;">Preço</th>
+                                                    <th style="color: white;text-align:center;width:25%;">Volume</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Custom scripts -->
+    <script src="/Content/js/sb-admin-2.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            function generateChart() {
+
+                        var dataPoints = [{ x: new Date(2019, 07, 02, 08, 00, 00), y: [41810, 41910, 41790, 41890.5] }, { x: new Date(2019, 07, 02, 08, 15, 00), y: [41850, 41999, 41800, 41822.5] }, { x: new Date(2019, 07, 02, 08, 30, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 08, 45, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 09, 00, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 09, 15, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 09, 30, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 09, 45, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 10, 00, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 10, 15, 00), y: [41850, 41999, 41800, 41890.5] }];   //dataPoints.];
+          var result = @Html.Raw(ViewBag.DataPoints);
+        var dps = [];
+        var dpsaux = [];
+        for (var i = 0; i < result.length; i++) {
+            dpsaux = [result[i].y[0], result[i].y[1], result[i].y[2], result[i].y[3]]; 
+            dps.push({ x: new Date(result[i].x), y: dpsaux });
+        }
+            var chart = new CanvasJS.Chart("chart-container", {
+            animationEnabled: true,
+            theme: "dark2", // "light1", "light2", "dark1", "dark2"
+           // exportEnabled: true,
+            title: {
+                text: "CandleStick"
+            },
+            subtitles: [{
+                text: ""
+            }],
+            axisX: {
+                interval: 1,
+                valueFormatString: "HH",
+                intervalType: "hour"
+            },
+            axisY: {
+                includeZero: false,
+                prefix: "$",
+                title: "Preço",
+                reversed: true
+            },
+            toolTip: {
+                content: "Minute: {x}<br /><strong>Price:</strong><br />Open: {y[0]}, Close: {y[3]}<br />High: {y[1]}, Low: {y[2]}"
+            },
+            data: [{
+                type: "candlestick",
+                yValueFormatString: "$##0.00",
+                risingColor: "green",
+                fallingColor: "red",
+                dataPoints: dps
+                //dataPoints: dataPoints
+               
+            }]
+        });
+                                                                       
+
+                chart.render();
+                $(".canvasjs-chart-credit").remove();
+            }
+
+            function ajustPage() {
+                $("nav.navbar.navbar-expand-lg.container-fluid.nav-padding").removeClass("navbar-basic-platform-background").css({ background: "#151616" });
+                $("#layout-page-body").css({ margin: 0 }).css({ padding: 0 });
+                $("div.container-fluid").css({ "padding-top": "20px" });
+
+                $("#total-aproximado").text("R$ " + formatCurrency(JSON.parse($("#saldoPessoa").val()).SalSaldoLiquido)).css({ "font-size": "1em" }).css({ "font-weight": "800" });
+                $("#saldo-disponivel").text("R$ " + formatCurrency(JSON.parse($("#saldoPessoa").val()).SalSaldoBruto)).css({ "font-size": "1em" }).css({ "font-weight": "800" });
+
+                if ($("#cotacoesMoedas").val() == "") {
+                    getCoinsQuotation();
+                }
+
+                var cotacaoMoedas = JSON.parse($("#cotacoesMoedas").val());
+
+                $("#hid-btc-id").val(cotacaoMoedas[0].m_MoedaCotada.IdMoeda);
+                $("#span-btc").text("R$ " + formatCurrency(cotacaoMoedas[0].CotValor));
+                $("#span-var-btc").text("+" + cotacaoMoedas[0].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-eth-id").val(cotacaoMoedas[1].m_MoedaCotada.IdMoeda);
+                $("#span-eth").text("R$ " + formatCurrency(cotacaoMoedas[1].CotValor));
+                $("#span-var-eth").text("+" + cotacaoMoedas[1].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-xrp-id").val(cotacaoMoedas[2].m_MoedaCotada.IdMoeda);
+                $("#span-xrp").text("R$ " + formatCurrency(cotacaoMoedas[2].CotValor));
+                $("#span-var-xrp").text("+" + cotacaoMoedas[2].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-bch-id").val(cotacaoMoedas[3].m_MoedaCotada.IdMoeda);
+                $("#span-bch").text("R$ " + formatCurrency(cotacaoMoedas[3].CotValor));
+                $("#span-var-bch").text("+" + cotacaoMoedas[3].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-ltc-id").val(cotacaoMoedas[4].m_MoedaCotada.IdMoeda);
+                $("#span-ltc").text("R$ " + formatCurrency(cotacaoMoedas[4].CotValor));
+                $("#span-var-ltc").text("+" + cotacaoMoedas[4].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-dash-id").val(cotacaoMoedas[5].m_MoedaCotada.IdMoeda);
+                $("#span-dash").text("R$ " + formatCurrency(cotacaoMoedas[5].CotValor));
+                $("#span-var-dash").text("+" + cotacaoMoedas[5].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-zec-id").val(cotacaoMoedas[6].m_MoedaCotada.IdMoeda);
+                $("#span-zec").text("R$ " + formatCurrency(cotacaoMoedas[6].CotValor));
+                $("#span-var-zec").text("+" + cotacaoMoedas[6].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#wrapper").css({ "max-width": window.innerWidth - 17 }).css({ "width": window.innerWidth - 17 });
+                $(window).on('resize', function () {
+                    $("#wrapper").css({ "max-width": window.innerWidth - 17 }).css({ "width": window.innerWidth - 17 });
+                });
+
+                $("#wrapper").on('resize', function (e) {
+                    e.stopPropagation();
+                });
+
+                $("#loader").css({ display: "none" });
+                $("#wrapper").css({ display: "block" });
+                $("#coin-chart").height($("#coin-trade").height());
+                $("#coin-chart > div.card.shadow.mb-4").height($("#coin-trade").height());
+                $("[id^='btn-boleta-']").width(65);
+                $("[id^='btn-boleta-sell-']").width(65);
+
+                generateChart();
+                generateGridActiveOrders();
+                generateGridExecutedOrders();
+                generateGridInactiveOrders();
+                generateGridTradesHistory();
+            }
+
+            function fillCoinQuotation() {
+                var cotacaoMoedas = JSON.parse($("#cotacoesMoedas").val());
+
+                $("#hid-btc-id").val(cotacaoMoedas[0].m_MoedaCotada.IdMoeda);
+                $("#span-btc").text("R$ " + formatCurrency(cotacaoMoedas[0].CotValor));
+                $("#span-var-btc").text("+" + cotacaoMoedas[0].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-eth-id").val(cotacaoMoedas[1].m_MoedaCotada.IdMoeda);
+                $("#span-eth").text("R$ " + formatCurrency(cotacaoMoedas[1].CotValor));
+                $("#span-var-eth").text("+" + cotacaoMoedas[1].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-xrp-id").val(cotacaoMoedas[2].m_MoedaCotada.IdMoeda);
+                $("#span-xrp").text("R$ " + formatCurrency(cotacaoMoedas[2].CotValor));
+                $("#span-var-xrp").text("+" + cotacaoMoedas[2].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-bch-id").val(cotacaoMoedas[3].m_MoedaCotada.IdMoeda);
+                $("#span-bch").text("R$ " + formatCurrency(cotacaoMoedas[3].CotValor));
+                $("#span-var-bch").text("+" + cotacaoMoedas[3].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-ltc-id").val(cotacaoMoedas[4].m_MoedaCotada.IdMoeda);
+                $("#span-ltc").text("R$ " + formatCurrency(cotacaoMoedas[4].CotValor));
+                $("#span-var-ltc").text("+" + cotacaoMoedas[4].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-dash-id").val(cotacaoMoedas[5].m_MoedaCotada.IdMoeda);
+                $("#span-dash").text("R$ " + formatCurrency(cotacaoMoedas[5].CotValor));
+                $("#span-var-dash").text("+" + cotacaoMoedas[5].CotVariacaoDiaria.toLocaleString() + "%");
+
+                $("#hid-zec-id").val(cotacaoMoedas[6].m_MoedaCotada.IdMoeda);
+                $("#span-zec").text("R$ " + formatCurrency(cotacaoMoedas[6].CotValor));
+                $("#span-var-zec").text("+" + cotacaoMoedas[6].CotVariacaoDiaria.toLocaleString() + "%");
+            }
+
+            $("#buy-buy-coins").on("click", function (e) {
+                var buyValue = $("#buy-value").val() == "" ? 0 : parseFloat($("#buy-value").val());
+                if (buyValue == 0) return false;
+
+                var coin = getCoinInfo($("#span-qtd-buy-coin").text().toLowerCase());
+
+                $.ajax({
+                    url: '@Url.Action("AddOrder", "Dashboard")?preco=' + coinValue + "&quantidade=" + buyValue + "&sNomMoeda=" + coin.coinCode + "&idMoeda=" + coin.id,
+                    type: 'POST'
+                }).done(function (retorno) {
+                    if (retorno == "True") {
+                        alert("Operação realizada com sucesso!");
+                    } else {
+                        alert("Erro ao realizar a operação, tente novamente mais tarde");
+                    }
+                }).fail(function (exc) {
+                    alert("Erro ao realizar a operação, tente novamente mais tarde");
+                    console.log(exc);
+                });
+            });
+
+            $("#sell-sell-coins").on("click", function (e) {
+                var sellValue = $("#sell-value").val() == "" ? 0 : parseFloat($("#sell-value").val());
+                if (sellValue == 0) return false;
+
+                var coin = getCoinInfo($("#span-qtd-buy-coin").text().toLowerCase());
+
+                $.ajax({
+                    url: '@Url.Action("AddOrder", "Dashboard")?preco=' + coinValue + "&quantidade=" + sellValue + "&sNomMoeda=" + coin.coinCode + "&idMoeda=" + coin.id,
+                    type: 'POST'
+                }).done(function(retorno) {
+                    if (retorno == "True") {
+                        alert("Operação realizada com sucesso!");
+                    } else {
+                        alert("Erro ao realizar a operação, tente novamente mais tarde");
+                    }
+                }).fail(function (exc) {
+                    alert("Erro ao realizar a operação, tente novamente mais tarde");
+                    console.log(exc);
+                });
+            });
+
+            function getCoinInfo(coinCode) {
+                var coin = {};
+
+                coin.coinCode = coinCode;
+
+                coinValue = $("#span-" + coinCode).text();
+                coinValue = coinValue.replace(/\./g, "").replace("R$ ", "").replace(/\,/g, ".");
+                coinValue = parseFloat(coinValue);
+                coin.coinValue = coinValue;
+
+                coin.id = parseInt($("#hid-" + coinCode.toLowerCase() + "-id").val());
+
+                return coin
+            }
+
+            $("#buy-value").on("keypress", function (e) {
+                var self = this;
+                var value = $(self).val();
+
+                var keyCode = (e.which) ? e.which : e.keyCode;
+                if ((keyCode < 48 || keyCode > 57) && !(keyCode == 44)) {
+                    return false;
+                }
+                if (keyCode == 44) {
+                    if (($(this).val().split(',').length > 1)) {
+                        return false;
+                    }
+                }
+
+                var coin = getCoinInfo($("#span-qtd-buy-coin").text().toLowerCase());
+
+                if (value.length < 10)
+                    value += e.key;
+
+                if (value.length == 0) value = 0;
+
+                var buyValue = parseFloat(value.replace(/\./g, "").replace("R$ ", "").replace(/\,/g, "."));
+                var buyOrder = (buyValue / coin.coinValue).toFixed(8).replace(".", ",");
+
+                $("#span-quantity").text(buyOrder);
+                $("#span-liquid-value").text(buyOrder);
+            });
+
+            $("#buy-value").on("blur", function (e) {
+                var self = this;
+                var value = $(self).val();
+
+                calculateBuyValueByCoin(value);
+            });
+
+            function calculateBuyValueByCoin(value) {
+                var coin = getCoinInfo($("#span-qtd-buy-coin").text().toLowerCase());
+                value = value == "" ? 0 : value;
+
+                var buyValue = parseInt(value);
+                var buyOrder = (buyValue / coin.coinValue).toFixed(8).replace(".", ",");
+
+                $("#span-quantity").text(buyOrder);
+                $("#span-liquid-value").text(buyOrder);
+            }
+
+            $("#sell-value").on("keypress", function (e) {
+                var self = this;
+                var value = $(self).val();
+
+                var keyCode = (e.which) ? e.which : e.keyCode;
+                if ((keyCode < 48 || keyCode > 57) && !(keyCode == 44)) {
+                    return false;
+                }
+                if (keyCode == 44) {
+                    if (($(this).val().split(',').length > 1)) {
+                        return false;
+                    }
+                }
+
+                var coin = getCoinInfo($("#span-qtd-buy-coin").text().toLowerCase());
+
+                if (value.length < 10)
+                    value += e.key;
+
+                if (value.length == 0) value = 0;
+
+                var sellValue = parseFloat(value.replace(/\./g, "").replace("R$ ", "").replace(/\,/g, "."));
+                var sellOrder = (sellValue * coin.coinValue).toFixed(2).replace(".", ",");
+
+                $("#sell-span-quantity").text(sellOrder);
+                $("#sell-span-liquid-value").text(sellOrder);
+            });
+
+            $("#sell-value").on("blur", function (e) {
+                var self = this;
+
+                var coin = getCoinInfo($("#span-qtd-buy-coin").text().toLowerCase());
+                var value = $(self).val();
+                value = value == "" ? 0 : value;
+
+                var sellValue = parseInt(value);
+                var sellOrder = (sellValue * coin.coinValue).toFixed(2).replace(".", ",");
+
+                $("#sell-span-quantity").text(sellOrder);
+                $("#sell-span-liquid-value").text(sellOrder);
+            });
+
+            function getOrders(idMoeda) {
+                if (idMoeda == undefined) idMoeda = 1;
+
+                $.ajax({
+                    url: '@Url.Action("GetOrdensCompra", "Dashboard")?idMoeda=' + idMoeda,
+                    type: 'POST',
+                    async: false
+                }).done(function(retorno) {
+                    $("#ordensCompra").val(retorno);
+                }).fail(function(exc) {
+                    console.log(exc);
+                });
+
+                $.ajax({
+                    url: '@Url.Action("GetOrdensVenda", "Dashboard")?idMoeda=' + idMoeda,
+                    type: 'POST',
+                    async: false
+                }).done(function(retorno) {
+                    $("#ordensVenda").val(retorno);
+                }).fail(function(exc) {
+                    console.log(exc);
+                });
+
+                generateGridBookOffers();
+            }
+
+            function generateGridBookOffers() {
+                $("#table-book-offers").find("tr:gt(0)").remove();
+                var markup = '';
+
+                var ordensVenda = JSON.parse($("#ordensVenda").val());
+                var ordensCompra = JSON.parse($("#ordensCompra").val());
+
+                var ordensLength = ordensVenda.length > ordensCompra.length ? ordensVenda.length : ordensCompra.length;
+                for (var i = 0; i < ordensLength; i++) {
+                    markup += '<tr>';
+
+                    if (ordensCompra[i] != undefined) {
+
+                        var valueQuantCompra = ordensCompra[i].OrdQuantidade.toLocaleString().padEnd(10, "0")
+                        var valuePrecoCompra = formatCurrency(ordensCompra[i].OrdPreco);
+
+                        markup +=
+                            '<td style="color: white;text-align:center;width: 25%;">' + valueQuantCompra + '</td><td style="font-weight: 700;color: limegreen;text-align:center;width: 25%;">' + valuePrecoCompra + '</td>';
+                    } else {
+                        markup +=
+                            '<td style="color: white;text-align:center;width: 25%;"></td><td style="color: white;text-align:center;width: 25%;"></td>';
+                    }
+
+                    if (ordensVenda[i] != undefined) {
+
+                        var valueQuantidade = ordensVenda[i].OrdQuantidade.toLocaleString().padEnd(10, "0")
+                        var valuePreco = formatCurrency(ordensVenda[i].OrdPreco);
+
+                        markup +=
+                            '<td style="font-weight: 700;color: #FF3333;text-align:center;width: 25%;">' + valuePreco + '</td><td style="color: white;text-align:center;width: 25%;">' + valueQuantidade + '</td>';
+                    } else {
+                        markup +=
+                            '<td style="color: white;text-align:center;width: 25%;></td><td style="color: white;text-align:center;width: 25%;></td>';
+                    }
+                    markup += '</tr>';
+                }
+
+                $("#table-book-offers").append(markup);
+            }
+
+            function generateGridActiveOrders() {
+                $("#table-active-orders").find("tr:gt(0)").remove();
+                var markup = '';
+
+                var ordens = JSON.parse($("#ordensAbertas").val());
+                if (ordens.length == 0) {
+                    return false;
+                } else if (ordens != undefined) {
+                    $("#active-orders-empty-message").hide();
+                } else {
+                    return false;
+                }
+
+                var ordensLength = ordens.length;
+                for (var i = 0; i < ordensLength; i++) {
+                    markup += '<tr>';
+
+                    var valueData = new Date(ordens[i].OrdDataHora).toLocaleString(); @*.split(" ")[0]*@
+                    var valueTipo = "";
+                    var valueQuantidade = ordens[i].OrdQuantidade.toLocaleString().padEnd(10, "0");
+                    var valueExec = ordens[i].OrdExecutado;
+                    var valuePreco = formatCurrency(ordens[i].OrdPreco);
+                    var valueAcao = ordens[i].m_TipoOrdem == 2 ? "Venda" : "Compra";
+
+                    markup +=
+                    '<td style="font-size:0.75em;color: white;text-align:center;width:15.67%;">' + valueData + '</td>' +
+                    '<td style="font-size:0.75em;color: white;text-align:center;width:15.67%;">' + valueTipo + '</td>' +
+                    '<td style="font-size:0.75em;color: white;text-align:center;width:20.67%;">' + valueQuantidade + '</td>' +
+                    '<td style="font-size:0.75em;color: white;text-align:center;width:15.67%;">' + valueExec + '</td>' +
+                    '<td style="font-size:0.75em;color: white;text-align:center;width:16.37%;">' + valuePreco + '</td>' +
+                    '<td style="font-size:0.85em;font-weight: 700;' + (ordens[i].m_TipoOrdem == 2 ? 'color: #FF3333;' : 'color: limegreen;') + 'text-align:center;width:16.67%;">' + valueAcao + '</td>';
+                    markup += '</tr>';
+                }
+
+                $("#table-active-orders").append(markup);
+            }
+
+            function generateGridExecutedOrders() {
+                $("#table-executed-orders").find("tr:gt(0)").remove();
+                var markup = '';
+
+                var ordens = JSON.parse($("#ordensExecutadas").val());
+                if (ordens.length == 0) {
+                    return false;
+                } else if (ordens != undefined) {
+                    $("#executed-orders-empty-message").hide();
+                } else {
+                    return false;
+                }
+
+                var ordensLength = ordens.length;
+                for (var i = 0; i < ordensLength; i++) {
+                    markup += '<tr>';
+
+                    var valueData = new Date(ordens[i].OrdDataHora).toLocaleString(); @*.split(" ")[0] *@
+                    var valueTipo = "";
+                    var valueQuantidade = ordens[i].OrdQuantidade.toLocaleString().padEnd(10, "0");
+                    var valuePreco = formatCurrency(ordens[i].OrdPreco);
+                    var valueFeeNegociacao = 0
+
+                    markup +=
+                    '<td style="font-size:0.85em;color: white;text-align:center;width:19.5%;">' + valueData + '</td>' +
+                    '<td style="font-size:0.85em;color: white;text-align:center;width:19.5%;">' + valueTipo + '</td>' +
+                    '<td style="font-size:0.85em;color: white;text-align:center;width:20%;">' + valueQuantidade + '</td>' +
+                    '<td style="font-size:0.85em;color: white;text-align:center;width:20%;">' + valuePreco + '</td>' +
+                    '<td style="font-size:0.85em;color: white;text-align:center;width:21%;">' + valueFeeNegociacao + '</td>';
+                    markup += '</tr>';
+                }
+
+                $("#table-executed-orders").append(markup);
+            }
+
+            function generateGridInactiveOrders() {
+                $("#table-inactive-orders").find("tr:gt(0)").remove();
+                var markup = '';
+
+                var ordens = JSON.parse($("#ordensInativas").val());
+                if (ordens.length == 0) {
+                    return false;
+                } else if (ordens != undefined) {
+                    $("#inactive-orders-empty-message").hide();
+                } else {
+                    return false;
+                }
+
+                var ordensLength = ordens.length;
+                for (var i = 0; i < ordensLength; i++) {
+                    markup += '<tr>';
+
+                    var valueData = new Date(ordens[i].OrdDataHora).toLocaleString(); @*.split(" ")[0] *@
+                    var valueTipo = "";
+                    var valueQuantidade = ordens[i].OrdQuantidade.toLocaleString().padEnd(10, "0");
+                    var valuePreco = formatCurrency(ordens[i].OrdPreco);
+                    var valueFeeNegociacao = 0
+
+                    markup +=
+                        '<td style="font-size:0.85em;color: white;text-align:center;width:20%;">' + valueData + '</td>' +
+                        '<td style="font-size:0.85em;color: white;text-align:center;width:20%;">' + valueTipo + '</td>' +
+                        '<td style="font-size:0.85em;color: white;text-align:center;width:20%;">' + valueQuantidade + '</td>' +
+                        '<td style="font-size:0.85em;color: white;text-align:center;width:20%;">' + valuePreco + '</td>' +
+                        '<td style="font-size:0.85em;color: white;text-align:center;width:20%;">' + valueFeeNegociacao + '</td>';
+                    markup += '</tr>';
+                }
+
+                $("#table-inactive-orders").append(markup);
+            }
+
+            function generateGridTradesHistory() {
+                $("#table-trades-history").find("tr:gt(0)").remove();
+                var markup = '';
+
+                var ordens = JSON.parse($("#detail").val());
+                if (ordens.length == 0) {
+                    return false;
+                } else if (ordens == undefined) {
+                    return false;
+                }
+
+                var valuePrecoAnterior = 0;
+                var color = "";
+                var ordensLength = ordens.length;
+                for (var i = 0; i < ordensLength; i++) {
+                    markup += '<tr>';
+
+                    var valueVolume = ordens[i].VlrAbertura;
+                    var valuePreco = formatCurrency(ordens[i].VlrFechamento);
+                    var valueTempo = new Date(JSON.parse($("#detail").val())[i].HorarioInicio).toTimeString().split(" ")[0];
+
+                    if (parseFloat(valuePreco.replace(/\./g, "").replace(/\,/g, ".")) < valuePrecoAnterior) {
+                        color = "color: #FF3333;";
+                    } else if (parseFloat(valuePreco.replace(/\./g, "").replace(/\,/g, ".")) > valuePrecoAnterior) {
+                        color = "color: limegreen;";
+                    }
+
+                    markup +=
+                        '<td style="font-size:0.9em;color: white;text-align:center;width:33.33%;">' + valueVolume + '</td>' +
+                        '<td style="font-size:0.9em;' + color + 'text-align:center;width:33.33%;">' + valuePreco + '</td>' +
+                        '<td style="font-size:0.9em;color: white;text-align:center;width:33.33%;">' + valueTempo + '</td>';
+
+                    var valuePrecoAnterior = parseFloat(valuePreco.replace(/\./g, "").replace(/\,/g, "."));
+                }
+
+                $("#table-trades-history").append(markup);
+            }
+
+            $("#div-btc-info").on('click', function (e) { changeCoin("BTC"); });
+            $("#div-eth-info").on('click', function (e) { changeCoin("ETH"); });
+            $("#div-xrp-info").on('click', function (e) { changeCoin("XRP"); });
+            $("#div-bch-info").on('click', function (e) { changeCoin("BCH"); });
+            $("#div-ltc-info").on('click', function (e) { changeCoin("LTC"); });
+            $("#div-dash-info").on('click', function (e) { changeCoin("DASH"); });
+            $("#div-zec-info").on('click', function (e) { changeCoin("ZEC"); });
+
+            function changeCoin(value) {
+                $("#span-qtd-buy-coin").text(value);
+                $("#span-tax-buy-coin").text(value);
+                $("#span-lv-buy-coin").text(value);
+                $("#span-sell-coin").text(value);
+
+                var coinObj = JSON.parse($("#cotacoesMoedas").val()).find(function (e) { return e.m_MoedaCotada.MoeNome == value; });
+                if (coinObj !== undefined) {
+                    var coinName = coinObj.m_MoedaCotada.MoeSigla;
+                    $("#coin-name").text(coinName);
+                }
+
+                calculateBuyValueByCoin($("#buy-value").val());
+
+                getOrders(parseInt($("#hid-" + value.toLowerCase() + "-id").val()));
+            }
+
+            function getCoinsQuotation() {
+                $.ajax({
+                    url: '@Url.Action("GetCoinsQuotation", "Dashboard")',
+                    type: 'POST'
+                }).done(function (retorno) {
+                    $("#cotacoesMoedas").val(retorno);
+                    fillCoinQuotation();                    
+                }).fail(function(exc) {
+                    console.log(exc);
+                });
+            }
+
+            $("#buy-tab").on("click", function (e) {
+                $("#buy-tab").css({ background: "#56baed", color: "white", "border-color": "white" });
+                $("#sell-tab").css({ background: "#2a2a2e", color: "#56baed", "border-color": "white" });
+            });
+
+            $("#sell-tab").on("click", function (e) {
+                $("#sell-tab").css({ background: "#e74a3b", color: "white", "border-color": "white" });
+                $("#buy-tab").css({ background: "#2a2a2e", color: "#56baed", "border-color": "white" });
+            });
+
+            $("#open-orders-tab").on("click", function (e) {
+                $("#open-orders-tab").css({ background: "#56baed", color: "white", "border-color": "white" });
+
+                $("#executed-orders-tab").css({ background: "#2a2a2e", color: "#56baed", "border-color": "white" });
+                $("#inactive-orders-tab").css({ background: "#2a2a2e", color: "#56baed", "border-color": "white" });
+            });
+
+            $("#executed-orders-tab").on("click", function (e) {
+                $("#executed-orders-tab").css({ background: "#56baed", color: "white", "border-color": "white" });
+
+                $("#open-orders-tab").css({ background: "#2a2a2e", color: "#56baed", "border-color": "white" });
+                $("#inactive-orders-tab").css({ background: "#2a2a2e", color: "#56baed", "border-color": "white" });
+            });
+
+            $("#inactive-orders-tab").on("click", function (e) {
+                $("#inactive-orders-tab").css({ background: "#56baed", color: "white", "border-color": "white" });
+
+                $("#open-orders-tab").css({ background: "#2a2a2e", color: "#56baed", "border-color": "white" });
+                $("#executed-orders-tab").css({ background: "#2a2a2e", color: "#56baed", "border-color": "white" });
+            });
+
+            setInterval(function (e) {
+
+                getCoinsQuotation();
+
+                var coinObj = JSON.parse($("#cotacoesMoedas").val()).find(function (e) { return e.m_MoedaCotada.MoeNome == $("#span-qtd-buy-coin").text(); });
+                var coinId = 0;
+                if (coinObj !== undefined) {
+                    var coinId = parseInt(coinObj.m_MoedaCotada.IdMoeda);
+                }
+
+                getOrders(coinId);
+                generateGridActiveOrders();
+                generateGridExecutedOrders();
+                generateGridInactiveOrders();
+                generateGridTradesHistory();
+
+            }, 30000); /* 30 seg */
+
+            getOrders();
+
+            ajustPage();
+        });
+    </script>
+
+    <script>
+        function changeInterval(value) {
+            $("[id^='btn-interval-']").removeClass("btn-success").addClass("btn-outline-success");
+            $("#btn-interval-" + value).addClass("btn-success").removeClass("btn-outline-success");
+            $("#interval").val(value);
+        }
+
+        function selectBoletMode(value) {
+            $("[id^='btn-boleta-']").removeClass("btn-primary").addClass("btn-outline-primary");
+            $("#btn-boleta-" + value).addClass("btn-primary").removeClass("btn-outline-primary");
+            $("#id-boleta-type").val(value);
+        }
+
+        function selectBoletSellMode(value) {
+            $("[id^='btn-boleta-sell-']").removeClass("btn-warning").addClass("btn-outline-warning");
+            $("#btn-boleta-sell-" + value).addClass("btn-warning").removeClass("btn-outline-warning");
+            $("#id-boleta-sell-type").val(value);
+        }
+
+    </script>
+
+</body>

@@ -1,0 +1,74 @@
+﻿@model NycoinWebApp.Models.Cliente
+@{
+    ViewBag.Title = "Endereço";
+}
+<!DOCTYPE html>
+<div class="wrapper fadeIn">
+    <div class="form-signup-container" style="max-width: none;">
+
+        <div class="fadeIn first" style="margin:30px ">
+            <label style="font-size:2em;"><strong>Nycoin Bank | Endereço</strong></label>
+        </div>
+
+        @using (Html.BeginForm("ClienteEndereco", "Account", FormMethod.Post, new { id = "form", @class = "container" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                @Html.TextBoxFor(model => model.CliCep, new { @class = "input-text-signup fadeIn second", placeholder = "CEP *"@*, @required = true*@, @type = "number" })
+                <div>
+                    @Html.ValidationMessageFor(model => model.CliCep)
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3" style="margin-top: -22px;margin-left: -45px;">
+                <input type="button" class="btn-default-nycoin fadeIn fourth" value="Buscar" />
+            </div>
+            <div class="col-sm-3 col-md-3"></div>
+            <div class="col-sm-12 col-md-12" style="margin-top: -25px;margin-left: -109px;">
+                <a id="search-cep" href="#" class="underline-hover fadeIn fourth" style="font-size: 0.85em;font-weight: 600;">Não sabe seu CEP?</a>
+            </div>
+            <br />
+            <div class="col-sm-12 col-md-12">
+                @Html.TextBoxFor(model => model.CliEndereco, new { @class = "input-text-signup fadeIn second", style = "width: 93% !important;", placeholder = "Endereço *"@*, @required = true*@, @type = "text" })
+                <div>
+                    @Html.ValidationMessageFor(model => model.CliEndereco)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                @Html.TextBoxFor(model => model.CliNumero, new { @class = "input-text-signup fadeIn second", placeholder = "Número *"@*, @required = true*@ })
+                <div>
+                    @Html.ValidationMessageFor(model => model.CliNumero)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                @Html.TextBoxFor(model => model.CliComplemento, new { @class = "input-text-signup fadeIn second", placeholder = "Complemento *" })
+                <div>
+                    @Html.ValidationMessageFor(model => model.CliComplemento)
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                @Html.TextBoxFor(model => model.CliBairro, new { @class = "input-text-signup fadeIn second", style = "width: 93% !important;", placeholder = "Bairro *"@*, @required = true*@, @type = "text" })
+                <div>
+                    @Html.ValidationMessageFor(model => model.CliBairro)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                @Html.TextBoxFor(model => model.CliCidade, new { @class = "input-text-signup fadeIn second", placeholder = "Cidade *"@*, @required = true*@ })
+                <div>
+                    @Html.ValidationMessageFor(model => model.CliCidade)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                @Html.TextBoxFor(model => model.CliEstado, new { @class = "input-text-signup fadeIn second", placeholder = "Estado *"@*, @required = true*@ })
+                <div>
+                    @Html.ValidationMessageFor(model => model.CliEstado)
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4"></div>
+            <div class="col-sm-4 col-md-4"><input type="submit" class="btn-default-nycoin fadeIn fourth" value="Avançar" /></div>
+            <div class="col-sm-4 col-md-4"></div>
+        </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿.button-open-account {
+    background-color: #56baed !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    border-radius: 6px;
+    width: 160px;
+    text-align: center;
+    margin-left: 15px !important;
+}
+
+.button-open-account:hover {
+    background-color: #479bc6 !important;
+    color: #ffffff !important;
+}

@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "BTC                        Último Preço : 41.839,00";
+}
+<div id="chartContainer"></div>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        var dataPoints = [{ x: 1, y: [41810, 41999, 41900, 41890.5] }, { x: 2, y: [41850, 41999, 41800, 41890.5] }, { x: 3, y: [41850, 41999, 41800, 41890.5] }, { x: 4, y: [41850, 41999, 41800, 41890.5] }, { x: 5, y: [41850, 41999, 41800, 41890.5] }, { x: 6, y: [41850, 41999, 41800, 41890.5] }, { x: 7, y: [41850, 41999, 41800, 41890.5] }, { x: 8, y: [41850, 41999, 41800, 41890.5] }, { x: 9, y: [41850, 41999, 41800, 41890.5] }, { x: 10, y: [41850, 41999, 41800, 41890.5] }];   //dataPoints.];
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "dark1", // "light1", "light2", "dark1", "dark2"
+            exportEnabled: true,
+            title: {
+                text: "CandleStick       5 min     15 min      30 min      1 hora       1 dia"
+            },
+            subtitles: [{
+                text: ""
+            }],
+            axisX: {
+                interval: 1,
+                valueFormatString: "00"
+            },
+            axisY: {
+                includeZero: false,
+                prefix: "$",
+                title: "Preço",
+                reversed: true
+            },
+            toolTip: {
+                content: "Minute: {x}<br /><strong>Price:</strong><br />Open: {y[0]}, Close: {y[3]}<br />High: {y[1]}, Low: {y[2]}"
+            },
+            data: [{
+                type: "candlestick",
+                yValueFormatString: "$##0.00",
+                dataPoints: dataPoints
+            }]
+        });
+                var dataPoints = [{ x: new Date(2019, 07, 02, 08, 00, 00), y: [41810, 41910, 41790, 41890.5] }, { x: new Date(2019, 07, 02, 08, 15, 00), y: [41850, 41999, 41800, 41822.5] }, { x: new Date(2019, 07, 02, 08, 30, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 08, 45, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 09, 00, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 09, 15, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 09, 30, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 09, 45, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 10, 00, 00), y: [41850, 41999, 41800, 41890.5] }, { x: new Date(2019, 07, 02, 10, 15, 00), y: [41850, 41999, 41800, 41890.5] }];   //dataPoints.];
+          var result = @Html.Raw(ViewBag.DataPoints);
+        var dps = [];
+        var dpsaux = [];
+        for (var i = 0; i < result.length; i++) {
+            dpsaux = [result[i].y[0], result[i].y[1], result[i].y[2], result[i].y[3]]; 
+            dps.push({ x: new Date(result[i].x), y: dpsaux });
+        }
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "dark2", // "light1", "light2", "dark1", "dark2"
+           // exportEnabled: true,
+            title: {
+                text: "CandleStick"
+            },
+            subtitles: [{
+                text: ""
+            }],
+            axisX: {
+                interval: 1,
+                valueFormatString: "HH",
+                intervalType: "hour"
+            },
+            axisY: {
+                includeZero: false,
+                prefix: "$",
+                title: "Preço",
+                reversed: true
+            },
+            toolTip: {
+                content: "Minute: {x}<br /><strong>Price:</strong><br />Open: {y[0]}, Close: {y[3]}<br />High: {y[1]}, Low: {y[2]}"
+            },
+            data: [{
+                type: "candlestick",
+                yValueFormatString: "$##0.00",
+                risingColor: "green",
+                fallingColor: "red",
+                dataPoints: dps
+                //dataPoints: dataPoints
+               
+            }]
+        });
+
+
+        chart.render();
+    });
+
+       /* var xVal = dps.length + 1;
+        var yVal = 15;
+        var updateInterval = 500;
+
+        var updateChart = function () {
+                    yVal = yVal + Math.round(5 + Math.random() * (-5 - 5));
+                dps.push({x: xVal, y: yVal });
+                xVal++;
+
+                chart.render();
+            };
+        setInterval(function () {updateChart()}, updateInterval);
+            });*/
+</script>

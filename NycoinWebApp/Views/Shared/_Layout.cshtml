@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <title>Nycoin | @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/nycoin")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg container-fluid nav-padding navbar-basic-platform-background" @*style="@(this.Url.RequestContext.RouteData.Values["action"] == "PlataformaAvancada" ? "background: '#151616'" : "")"*@>
+        <a class="navbar-brand" href="@Url.Action("Index", "Home" )">Nycoin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse order-0" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                @*Home*@
+                <li class="nav-item active">
+                    <a class="nav-link" href="@Url.Action("Index", "Home")" data-toggle="tooltip" title="Home"><i class="fas fa-home fa-2x"></i></a>
+                </li>
+                <li class="nav-item ">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                </li>
+                @*PlataformaBasica*@
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("PlataformaBasica", "Dashboard")" data-toggle="tooltip" title="Plataforma Básica"><i class="fas fa-chart-area fa-2x"></i></a>
+                </li>
+                @if (Session["Usuario"] != null)
+                {
+                    @*PlataformaAvancada*@
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("PlataformaAvancada", "Dashboard")" data-toggle="tooltip" title="Plataforma Avançada"><i class="fas fa-chart-bar fa-2x"></i></a>
+                    </li>
+                }
+                <li class="nav-item ">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                </li>
+
+                @if (Session["Usuario"] != null)
+                {
+                    @*My Operations*@
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("MyOperations", "Dashboard")" data-toggle="tooltip" title="Minhas Operações"><i class="fas fa-list-alt fa-2x"></i></a>
+                    </li>
+
+                    @*My Wallet*@
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("MyWallet", "Dashboard")" data-toggle="tooltip" title="Minhas Careira"><i class="fas fa-wallet fa-2x"></i></a>
+                    </li>
+
+                    @*Transfer*@
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Transfer", "Dashboard")" data-toggle="tooltip" title="Transferências"><i class="fas fa-exchange-alt fa-2x"></i></a>
+                    </li>
+
+                    @*My Account*@
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("MyData", "Account")" data-toggle="tooltip" title="Meus dados"><i class="fas fa-address-card fa-2x"></i></a>
+                    </li>
+                }
+
+                <li class="nav-item ">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                </li>
+                <li class="nav-item ">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                </li>
+            </ul>
+
+            <div class="navbar order-1">
+                <ul class="navbar-nav mx-auto">
+                    @*Content*@
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="nav-content" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Conteúdo
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Blog</a>
+                            <a class="dropdown-item" href="#">Cursos</a>
+                            <a class="dropdown-item" href="#">Relatórios</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+
+                    @*Help*@
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="nav-help" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Ajuda
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Perguntas frequentes</a>
+                            <a class="dropdown-item" href="#">Taxas e preços</a>
+                            <a class="dropdown-item" href="#">Atendimento</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+
+                    @*About*@
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="nav-about" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sobre
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Quem somos</a>
+                            <a class="dropdown-item" href="#">Segurança</a>
+                            <a class="dropdown-item" href="#">Carreiras</a>
+                            <a class="dropdown-item" href="#">Imprensa</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            @if (Session["Usuario"] == null)
+            {
+                @*Login*@
+                <ul class="nav navbar-nav order-2 ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Login", "Account" )"><i class="fas fa-sign-in-alt"></i> Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link button-open-account" href="@Url.Action("SignUp", "Account" )">@*<i class="fas fa-user-plus"></i> *@Abra a sua conta</a>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                @*Login*@
+                <ul class="nav navbar-nav order-2 ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Logout", "Account" )"><i class="fas fa-sign-out-alt"></i> Log out</a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </nav>
+
+    <div class="container body-content div-padding" id="layout-page-body">
+        @RenderBody()
+        @*<hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Nycoin Bank</p>
+        </footer>*@
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    @*
+    <script type="text/javascript">
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>*@
+
+</body>
+</html>

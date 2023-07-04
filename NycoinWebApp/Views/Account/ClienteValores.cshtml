@@ -1,0 +1,60 @@
+﻿@model NycoinWebApp.Models.Cliente
+@{
+    ViewBag.Title = "Dados pessoais";
+}
+<!DOCTYPE html>
+<div class="wrapper fadeIn">
+    <div class="form-signup-container" style="max-width: none;">
+
+        <div class="fadeIn first" style="margin:30px ">
+            <label style="font-size:2em;"><strong>Nycoin Bank | Dados pessoais</strong></label>
+        </div>
+
+        @using (Html.BeginForm("ClienteValores", "Account", FormMethod.Post, new { id = "form", @class = "container" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                @Html.TextBoxFor(model => model.PesNome, new { @class = "input-text-signup fadeIn second", style = "width: 93% !important;", placeholder = "Nome completo *"@*, @required = true *@ })
+                <div>
+                    @Html.ValidationMessageFor(model => model.PesNome)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                @Html.TextBoxFor(model => model.PesCPFCNPJ, new { @class = "input-text-signup fadeIn second", placeholder = "CPF *"@*, @required = true*@ })
+                <div>
+                    @Html.ValidationMessageFor(model => model.PesCPFCNPJ)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                @Html.TextBoxFor(model => model.CliDataNacto, new { @class = "input-text-signup fadeIn second", placeholder = "Data de nascimento *"@*, @required = true*@ })
+                <div>
+                    @Html.ValidationMessageFor(model => model.CliDataNacto)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                @Html.TextBoxFor(model => model.CliCelular, new { @class = "input-text-signup fadeIn second", placeholder = "Celular *"@*, @required = true*@ })
+                <div>
+                    @Html.ValidationMessageFor(model => model.CliCelular)
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6"></div>
+            <div class="col-sm-12 col-md-12">
+                <p style="text-align: justify;margin-left: 35px;margin-top: 20px;font-weight: 600;">Quanto você pretende Investir e/ou Transacionar por Ano?</p>
+                @Html.HiddenFor(model => model.FaixaInvestimento.FaixaNome)
+                <div style="text-align: left;margin-left: 35px;margin-bottom: 20px;">
+                    <input type="radio" id="FaixaInvestimento-0" name="FaixaInvestimento" value="0"> R$ 0 - R$ 100 mil<br>
+                    <input type="radio" id="FaixaInvestimento-1" name="FaixaInvestimento" value="1"> R$ 100 mil - R$ 300 mil<br>
+                    <input type="radio" id="FaixaInvestimento-2" name="FaixaInvestimento" value="2"> Mais de R$ 300 mil<br>
+                    <input type="radio" id="FaixaInvestimento-3" name="FaixaInvestimento" value="3"> Ainda não sei
+                    @Html.ValidationMessageFor(model => model.FaixaInvestimento.FaixaNome)
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4"></div>
+            <div class="col-sm-4 col-md-4"><input type="submit" class="btn-default-nycoin fadeIn fourth" value="Avançar" /></div>
+            <div class="col-sm-4 col-md-4"></div>
+        </div>
+        }
+    </div>
+</div>
